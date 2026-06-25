@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HABÄNE — Carry the City</title>
+  <meta name="description" content="Habäne — premium smart duffels, weekenders & backpacks. Engineered to carry your whole world, skyline and all." />
+  <link rel="icon" href="assets/brand/logo-white.png" />
+  <link rel="stylesheet" href="styles.css" />
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" defer></script>
+  <script src="https://unpkg.com/lucide@0.469.0/dist/umd/lucide.min.js" defer></script>
+</head>
+<body data-page="home">
+
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <path id="circlePath" d="M 50,50 m -37,0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0" />
+    </defs>
+  </svg>
+
+  <header class="nav nav--solid" id="nav">
+    <button class="nav__burger" id="burger" type="button" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+
+    <nav class="nav__links nav__links--left">
+      <a href="index.html">Home</a>
+      <a href="smart-series.html">Smart Series</a>
+      <a href="#showroom">3D Showroom</a>
+      <a href="#contact">Contact</a>
+    </nav>
+
+    <a class="nav__logo" href="index.html">
+      <img src="assets/brand/logo-white.png" alt="Habäne" />
+    </a>
+
+    <nav class="nav__links nav__links--right">
+      <button class="nav__icon nav__iconbtn" id="searchBtn" type="button" aria-label="Search"><i data-lucide="search"></i></button>
+      <button class="nav__icon nav__iconbtn nav__wish" id="wishBtn" type="button" aria-label="Wishlist">
+        <i data-lucide="heart"></i><em id="wishCount" hidden>0</em>
+      </button>
+      <div class="nav__profile">
+        <button class="nav__icon nav__iconbtn" id="profileBtn" type="button" aria-label="Account" aria-expanded="false"><i data-lucide="user"></i></button>
+        <div class="nav__profile-menu" id="profileMenu">
+          <button type="button" data-auth>Log In</button>
+          <button type="button" data-auth>Sign Up</button>
+        </div>
+      </div>
+      <button class="nav__icon nav__iconbtn nav__cart" id="cartBtn" type="button" aria-label="Cart">
+        <i data-lucide="shopping-bag"></i><em id="cartCount">0</em>
+      </button>
+    </nav>
+  </header>
+
+  <div class="ribbon" aria-hidden="true">
+    <div class="ribbon__track">
+      <span>FREE SHIPPING ON EVERYTHING · SMART DUFFELS — NOW LIVE · CARRY THE CITY · LIFETIME ZIPPER WARRANTY · NEW DROP: METROPOLITAN SERIES · </span>
+      <span>FREE SHIPPING ON EVERYTHING · SMART DUFFELS — NOW LIVE · CARRY THE CITY · LIFETIME ZIPPER WARRANTY · NEW DROP: METROPOLITAN SERIES · </span>
+    </div>
+  </div>
+
+  <div class="drawer" id="drawer">
+    <a href="index.html">Home</a>
+    <a href="smart-series.html">Smart Series</a>
+    <a href="#showroom">3D Showroom</a>
+    <a href="#contact">Contact</a>
+    <a href="shop.html">Shop All</a>
+    <a href="#" class="drawer__cart" id="drawerCartLink">Cart (<span class="drawer-cart-count">0</span>)</a>
+  </div>
+
+  <main id="top">
+
+    <section class="hero hero--coin">
+      <div class="hero__glow"></div>
+      <div class="hero__layout">
+        <div class="hero__inner">
+          <p class="hero__eyebrow">EST. — CARRY THE CITY</p>
+          <h1 class="hero__title">
+            <span>BAGS THAT</span>
+            <span class="hero__title--metal">MOVE LIKE YOU.</span>
+          </h1>
+          <p class="hero__sub">Smart duffels, weekenders &amp; backpacks engineered in metallic silver and midnight navy. Built for the people who never really unpack.</p>
+          <div class="hero__cta">
+            <a href="shop.html" class="hero-shop-cta" id="heroBagCta">
+              <span class="hero-shop-cta__anim"></span>
+              <span class="hero-shop-cta__label">SHOP NOW</span>
+            </a>
+            <a href="smart-series.html" class="ghost-btn">
+              <span>Meet the Smart Duffel</span>
+              <i data-lucide="arrow-right"></i>
+            </a>
+          </div>
+        </div>
+        <div class="hero__coin-wrap" id="heroCoin" aria-label="Habäne 3D coin animation"></div>
+      </div>
+      <div class="hero__marquee" aria-hidden="true">
+        <div class="hero__marquee-track">
+          <span>HABÄNE</span><span class="hollow">HABÄNE</span><span>HABÄNE</span><span class="hollow">HABÄNE</span><span>HABÄNE</span><span class="hollow">HABÄNE</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="featured" id="shop">
+      <div class="featured__head">
+        <h2 class="section-title">SHOP THE RANGE</h2>
+        <p class="section-sub">Three icons. Infinite destinations.</p>
+      </div>
+      <div class="grid grid--featured" id="grid"></div>
+      <div class="featured__more">
+        <a href="shop.html" class="view-more">View More <i data-lucide="arrow-right"></i></a>
+      </div>
+    </section>
+
+    <section class="smart-split" id="smart">
+      <a href="smart-series.html" class="smart-split__panel smart-split__panel--a">
+        <img src="assets/products/p4-smart-duffel-ivory.jpg" alt="Smart Duffel Ivory">
+        <div class="smart-split__overlay">
+          <h2 class="smart-split__title"><span>SMART</span><span>IVORY</span></h2>
+        </div>
+      </a>
+      <a href="smart-series.html" class="smart-split__panel smart-split__panel--b">
+        <img src="assets/products/p3-navy-voyager-duffel.jpg" alt="Voyager Smart Edition">
+        <div class="smart-split__overlay">
+          <h2 class="smart-split__title"><span>VOYAGER</span><span>NEEL</span></h2>
+        </div>
+      </a>
+      <a href="smart-series.html" class="smart-split__explore">Explore</a>
+    </section>
+
+    <section class="showroom" id="showroom">
+      <div class="showroom__head">
+        <p class="hero__eyebrow">3D SHOWROOM</p>
+        <h2 class="section-title">SPIN IT. INSPECT IT.</h2>
+        <p class="section-sub">Drag to rotate · scroll to zoom · double-tap to recenter.</p>
+      </div>
+      <div class="showroom__stage">
+        <model-viewer id="viewer" alt="Habäne luggage — interactive 3D model"
+          camera-controls auto-rotate auto-rotate-delay="0" rotation-per-second="20deg"
+          interaction-prompt="auto" shadow-intensity="1.1" shadow-softness="0.9" exposure="1.15"
+          environment-image="neutral" camera-orbit="35deg 75deg 110%"
+          min-camera-orbit="auto auto 60%" max-camera-orbit="auto auto 160%" touch-action="pan-y">
+          <div class="showroom__loader" slot="poster">
+            <span class="showroom__spinner"></span>
+            <span>loading 3D…</span>
+          </div>
+        </model-viewer>
+        <div class="showroom__tools">
+          <button id="spinToggle" class="tool is-active" type="button"><i data-lucide="rotate-cw"></i> Auto-spin</button>
+          <button id="resetView" class="tool" type="button"><i data-lucide="maximize"></i> Reset view</button>
+        </div>
+      </div>
+      <div class="showroom__pick" id="modelPick">
+        <button class="model-pick is-active" data-model="carryon" type="button">
+          <span class="model-pick__name">Carry-On</span><span class="model-pick__meta">Cabin · 38L</span>
+        </button>
+        <button class="model-pick" data-model="voyager" type="button">
+          <span class="model-pick__name">Voyager Case</span><span class="model-pick__meta">Check-in · 65L</span>
+        </button>
+        <button class="model-pick" data-model="cabin" type="button">
+          <span class="model-pick__name">Cabin Trunk</span><span class="model-pick__meta">Hard-shell · 45L</span>
+        </button>
+      </div>
+      <p class="showroom__credit">3D models via <a href="https://poly.pizza" target="_blank" rel="noopener">Poly Pizza</a> — CC-BY.</p>
+    </section>
+
+    <div class="strip" aria-hidden="true">
+      <div class="strip__track">
+        <span>CARRY THE CITY · MIDNIGHT NAVY · METALLIC SILVER · SMART INSIDE · CARRY THE CITY · MIDNIGHT NAVY · METALLIC SILVER · SMART INSIDE · </span>
+        <span>CARRY THE CITY · MIDNIGHT NAVY · METALLIC SILVER · SMART INSIDE · CARRY THE CITY · MIDNIGHT NAVY · METALLIC SILVER · SMART INSIDE · </span>
+      </div>
+    </div>
+
+    <section class="story" id="story">
+      <div class="story__inner">
+        <h2 class="story__title">We make bags for people who<br><span>can't sit still.</span></h2>
+        <p>Habäne started with one idea — your luggage should keep up with your life, not slow it down. Every piece is built in our signature midnight navy and metallic silver, printed with hand-drawn skylines, and engineered to survive the chaos of actually going places.</p>
+        <div class="story__stats">
+          <div><strong>40k+</strong><span>bags out in the wild</span></div>
+          <div><strong>4.9</strong><span>avg. obsessed reviews</span></div>
+          <div><strong>∞</strong><span>zipper warranty</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="faq-carousel" id="faq">
+      <div class="faq-carousel__head">
+        <h2 class="section-title">WHAT THEY'RE ASKING</h2>
+        <p class="section-sub">Real questions. Straight answers.</p>
+        <div class="faq-carousel__controls">
+          <button type="button" id="faqPrev" aria-label="Previous"><i data-lucide="chevron-left"></i></button>
+          <button type="button" id="faqNext" aria-label="Next"><i data-lucide="chevron-right"></i></button>
+        </div>
+      </div>
+      <div class="faq-carousel__viewport">
+        <div class="faq-carousel__track" id="faqTrack"></div>
+      </div>
+    </section>
+
+    <section class="contact" id="contact">
+      <div class="contact__inner">
+        <p class="hero__eyebrow">CONTACT</p>
+        <h2 class="section-title">LET'S TALK CARRY</h2>
+        <p class="section-sub">Orders, partnerships, or just saying hi — we're here.</p>
+        <div class="contact__grid">
+          <a href="mailto:hello@habane.com" class="contact__card">
+            <i data-lucide="mail"></i>
+            <strong>hello@habane.com</strong>
+            <span>We reply within 24 hours</span>
+          </a>
+          <a href="tel:+919876543210" class="contact__card">
+            <i data-lucide="phone"></i>
+            <strong>+91 98765 43210</strong>
+            <span>Mon–Sat, 10am–7pm IST</span>
+          </a>
+          <div class="contact__card">
+            <i data-lucide="map-pin"></i>
+            <strong>Mumbai, India</strong>
+            <span>By appointment only</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="news">
+      <div class="news__inner">
+        <h2>GET ON THE LIST<span>.</span></h2>
+        <p>Drops, restocks, and exclusive early access. No spam.</p>
+        <form class="news__form" id="newsForm">
+          <input type="email" placeholder="your@email.here" required />
+          <button type="submit" class="btn-3d btn-3d--join">
+            <span class="btn-3d__shadow"></span>
+            <span class="btn-3d__face">JOIN</span>
+          </button>
+        </form>
+        <p class="news__done" id="newsDone"></p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <div class="foot__top">
+      <div class="foot__brand">
+        <img src="assets/brand/wordmark-silver.png" alt="Habäne" class="foot__word" />
+        <p class="foot__tag">Carry the city. Leave the baggage.</p>
+        <div class="foot__social">
+          <a href="#" aria-label="Instagram"><i data-lucide="instagram"></i></a>
+          <a href="#" aria-label="YouTube"><i data-lucide="youtube"></i></a>
+          <a href="#" aria-label="Twitter"><i data-lucide="twitter"></i></a>
+        </div>
+      </div>
+      <div class="foot__col">
+        <h4>Shop</h4>
+        <a href="shop.html">All Products</a>
+        <a href="shop.html?cat=duffel">Duffels</a>
+        <a href="shop.html?cat=backpack">Backpacks</a>
+        <a href="smart-series.html">Smart Series</a>
+      </div>
+      <div class="foot__col">
+        <h4>Company</h4>
+        <a href="#story">Our Story</a>
+        <a href="#contact">Contact</a>
+        <a href="#showroom">3D Showroom</a>
+        <a href="#">Gift Cards</a>
+      </div>
+      <div class="foot__col">
+        <h4>Support</h4>
+        <a href="#">Shipping</a>
+        <a href="#">Returns</a>
+        <a href="#">Privacy</a>
+        <a href="#">Terms</a>
+      </div>
+    </div>
+    <div class="foot__bottom">
+      <p>© <span id="yr"></span> Habäne. All rights reserved.</p>
+      <p class="foot__vibe">Carry the city</p>
+    </div>
+  </footer>
+
+  <!-- Overlays -->
+  <div class="search-pop" id="searchPop" aria-hidden="true">
+    <div class="search-pop__inner">
+      <input type="text" id="searchInput" placeholder="Search bags…" autocomplete="off" />
+      <button class="search-pop__close" id="searchClose" type="button" aria-label="Close"><i data-lucide="x"></i></button>
+      <div class="search-pop__results" id="searchResults"></div>
+    </div>
+  </div>
+
+  <div class="cart" id="cart" aria-hidden="true">
+    <div class="cart__overlay" data-cart-close></div>
+    <aside class="cart__panel" role="dialog" aria-modal="true" aria-label="Cart">
+      <header class="cart__head">
+        <h3>Your Bag <span id="cartItems">(0)</span></h3>
+        <button class="cart__close" data-cart-close type="button" aria-label="Close"><i data-lucide="x"></i></button>
+      </header>
+      <div class="cart__ship"><p id="shipMsg"></p><div class="cart__bar"><span id="shipBar"></span></div></div>
+      <div class="cart__body" id="cartBody"></div>
+      <div class="cart__empty" id="cartEmpty">
+        <div class="cart__empty-icon"><i data-lucide="luggage"></i></div>
+        <p>Your bag is empty.</p>
+        <a href="shop.html" class="cart__empty-btn" data-cart-close>START SHOPPING</a>
+      </div>
+      <footer class="cart__foot" id="cartFoot">
+        <div class="cart__promo" id="cartPromo" hidden><span class="cart__promo-chip" id="cartPromoChip"></span><span class="cart__promo-txt">Discount applied</span></div>
+        <div class="cart__row"><span>Subtotal</span><strong id="cartSubtotal">₹0</strong></div>
+        <div class="cart__row cart__row--disc" id="cartDiscRow" hidden><span>Discount</span><strong id="cartDisc">−₹0</strong></div>
+        <div class="cart__row cart__row--total" id="cartTotalRow" hidden><span>Total</span><strong id="cartTotal">₹0</strong></div>
+        <p class="cart__note">Taxes &amp; shipping calculated at checkout.</p>
+        <button class="cart__checkout" id="checkoutBtn" type="button">CHECKOUT</button>
+        <button class="cart__continue" data-cart-close type="button">Continue browsing</button>
+      </footer>
+    </aside>
+  </div>
+
+  <div class="auth-pop" id="authPop" aria-hidden="true">
+    <div class="auth-pop__overlay" id="authCloseOverlay"></div>
+    <div class="auth-pop__panel">
+      <button class="auth-pop__close" id="authClose" type="button" aria-label="Close"><i data-lucide="x"></i></button>
+      <h3>Welcome to Habäne</h3>
+      <p>Sign in to track orders and sync your wishlist.</p>
+      <button type="button" class="auth-pop__btn auth-pop__btn--primary">Log In</button>
+      <button type="button" class="auth-pop__btn">Sign Up</button>
+    </div>
+  </div>
+
+  <div class="done" id="checkoutDone" aria-hidden="true">
+    <div class="done__overlay" data-done-close></div>
+    <div class="done__panel">
+      <div class="done__check"><i data-lucide="check"></i></div>
+      <h3>Order placed</h3>
+      <p id="doneMsg"></p>
+      <p class="done__order">Order <strong id="doneOrder"></strong></p>
+      <button class="done__btn" data-done-close type="button">KEEP SHOPPING</button>
+    </div>
+  </div>
+
+  <div class="loc-select" id="locSelect">
+    <button type="button" class="loc-select__btn" aria-label="Select region"></button>
+    <div class="loc-select__panel">
+      <input type="text" class="loc-select__search" placeholder="Search country…" autocomplete="off">
+      <div class="loc-select__list"></div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script type="module" src="https://cdn.jsdelivr.net/npm/@google/model-viewer@3.5.0/dist/model-viewer.min.js"></script>
+  <script src="assets/3d/models.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/store.js"></script>
+  <script src="js/components.js"></script>
+  <script src="js/coin-3d.js"></script>
+  <script src="js/bag-3d.js"></script>
+  <script src="js/home.js"></script>
+</body>
+</html>

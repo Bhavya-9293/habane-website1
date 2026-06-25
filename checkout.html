@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Checkout — HABÄNE</title>
+  <link rel="icon" href="assets/brand/logo-white.png" />
+  <link rel="stylesheet" href="styles.css" />
+  <script src="https://unpkg.com/lucide@0.469.0/dist/umd/lucide.min.js" defer></script>
+</head>
+<body data-page="checkout">
+
+  <header class="nav nav--solid" id="nav">
+    <a class="nav__logo" href="index.html" style="grid-column:2"><img src="assets/brand/logo-white.png" alt="Habäne" /></a>
+    <nav class="nav__links nav__links--right" style="grid-column:3">
+      <button class="nav__icon nav__iconbtn nav__cart" id="cartBtn" type="button"><i data-lucide="shopping-bag"></i><em id="cartCount">0</em></button>
+    </nav>
+  </header>
+
+  <main class="checkout-page">
+    <h1 class="section-title">CHECKOUT</h1>
+    <div class="checkout-page__grid">
+      <form class="checkout-form" id="coForm">
+        <section class="checkout-form__block">
+          <h3><i data-lucide="map-pin"></i> Shipping</h3>
+          <div class="checkout-form__row">
+            <input type="text" placeholder="First name" required>
+            <input type="text" placeholder="Last name" required>
+          </div>
+          <input type="email" placeholder="Email" required>
+          <input type="tel" placeholder="Phone" required>
+          <input type="text" placeholder="Address" required>
+          <div class="checkout-form__row">
+            <input type="text" placeholder="City" required>
+            <input type="text" placeholder="PIN code" required>
+          </div>
+        </section>
+        <section class="checkout-form__block">
+          <h3><i data-lucide="credit-card"></i> Payment</h3>
+          <input type="text" placeholder="Card number" required>
+          <div class="checkout-form__row">
+            <input type="text" placeholder="MM / YY" required>
+            <input type="text" placeholder="CVV" required>
+          </div>
+          <p class="checkout-form__note">This is a demo checkout — no payment will be processed.</p>
+        </section>
+        <button type="submit" class="checkout-form__submit">PLACE ORDER</button>
+      </form>
+
+      <aside class="checkout-summary">
+        <h3>Order Summary</h3>
+        <div id="coEmpty" hidden><p>Your cart is empty. <a href="shop.html">Shop now</a></p></div>
+        <div id="coItems"></div>
+        <div class="checkout-summary__rows">
+          <div class="cart__row"><span>Subtotal</span><strong id="coSubtotal">₹0</strong></div>
+          <div class="cart__row cart__row--disc" id="coDiscRow" hidden><span>Discount</span><strong id="coDisc">−₹0</strong></div>
+          <div class="cart__row cart__row--total"><span>Total</span><strong id="coTotal">₹0</strong></div>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <div class="done" id="checkoutDone" aria-hidden="true">
+    <div class="done__overlay" data-done-close></div>
+    <div class="done__panel">
+      <div class="done__check"><i data-lucide="check"></i></div>
+      <h3>Order placed</h3>
+      <p id="doneMsg"></p>
+      <p class="done__order">Order <strong id="doneOrder"></strong></p>
+      <button class="done__btn" data-done-close type="button">BACK TO HOME</button>
+    </div>
+  </div>
+
+  <div class="cart" id="cart" aria-hidden="true"><div class="cart__overlay" data-cart-close></div><aside class="cart__panel"><header class="cart__head"><h3>Your Bag <span id="cartItems">(0)</span></h3></header><div class="cart__body" id="cartBody"></div><footer class="cart__foot" id="cartFoot"><div class="cart__row"><span>Subtotal</span><strong id="cartSubtotal">₹0</strong></div><button class="cart__checkout" id="checkoutBtn" type="button">CHECKOUT</button></footer></aside></div>
+  <div class="toast" id="toast"></div>
+
+  <script src="js/data.js"></script>
+  <script src="js/store.js"></script>
+  <script src="js/components.js"></script>
+  <script src="js/checkout.js"></script>
+</body>
+</html>

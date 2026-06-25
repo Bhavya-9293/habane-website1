@@ -1,0 +1,73 @@
+<!-- Shared overlays & widgets — include before closing body on all pages -->
+<div class="search-pop" id="searchPop" aria-hidden="true">
+  <div class="search-pop__inner">
+    <input type="text" id="searchInput" placeholder="Search bags, e.g. smart duffel…" autocomplete="off" />
+    <button class="search-pop__close" id="searchClose" type="button" aria-label="Close"><i data-lucide="x"></i></button>
+    <div class="search-pop__results" id="searchResults"></div>
+  </div>
+</div>
+
+<div class="cart" id="cart" aria-hidden="true">
+  <div class="cart__overlay" data-cart-close></div>
+  <aside class="cart__panel" role="dialog" aria-modal="true" aria-label="Cart">
+    <header class="cart__head">
+      <h3>Your Bag <span id="cartItems">(0)</span></h3>
+      <button class="cart__close" data-cart-close type="button" aria-label="Close"><i data-lucide="x"></i></button>
+    </header>
+    <div class="cart__ship">
+      <p id="shipMsg">Add ₹4,999 more for <strong>free shipping</strong></p>
+      <div class="cart__bar"><span id="shipBar"></span></div>
+    </div>
+    <div class="cart__body" id="cartBody"></div>
+    <div class="cart__empty" id="cartEmpty">
+      <div class="cart__empty-icon"><i data-lucide="luggage"></i></div>
+      <p>Your bag is empty.</p>
+      <span>Discover something iconic.</span>
+      <a href="shop.html" class="cart__empty-btn" data-cart-close>START SHOPPING</a>
+    </div>
+    <footer class="cart__foot" id="cartFoot">
+      <div class="cart__promo" id="cartPromo" hidden>
+        <span class="cart__promo-chip" id="cartPromoChip">HABÄNE10</span>
+        <span class="cart__promo-txt">Discount applied</span>
+      </div>
+      <div class="cart__row"><span>Subtotal</span><strong id="cartSubtotal">₹0</strong></div>
+      <div class="cart__row cart__row--disc" id="cartDiscRow" hidden><span>Discount</span><strong id="cartDisc">−₹0</strong></div>
+      <div class="cart__row cart__row--total" id="cartTotalRow" hidden><span>Total</span><strong id="cartTotal">₹0</strong></div>
+      <p class="cart__note">Taxes &amp; shipping calculated at checkout.</p>
+      <button class="cart__checkout" id="checkoutBtn" type="button">CHECKOUT</button>
+      <button class="cart__continue" data-cart-close type="button">Continue browsing</button>
+    </footer>
+  </aside>
+</div>
+
+<div class="auth-pop" id="authPop" aria-hidden="true">
+  <div class="auth-pop__overlay" data-auth-close></div>
+  <div class="auth-pop__panel">
+    <button class="auth-pop__close" id="authClose" type="button" aria-label="Close"><i data-lucide="x"></i></button>
+    <h3>Welcome to Habäne</h3>
+    <p>Sign in to track orders and save your wishlist across devices.</p>
+    <button type="button" class="auth-pop__btn auth-pop__btn--primary">Log In</button>
+    <button type="button" class="auth-pop__btn">Sign Up</button>
+  </div>
+</div>
+
+<div class="done" id="checkoutDone" aria-hidden="true">
+  <div class="done__overlay" data-done-close></div>
+  <div class="done__panel">
+    <div class="done__check"><i data-lucide="check"></i></div>
+    <h3>Order placed</h3>
+    <p id="doneMsg">Your bags are on the way.</p>
+    <p class="done__order">Order <strong id="doneOrder"></strong></p>
+    <button class="done__btn" data-done-close type="button">KEEP SHOPPING</button>
+  </div>
+</div>
+
+<div class="loc-select" id="locSelect">
+  <button type="button" class="loc-select__btn" aria-label="Select region"></button>
+  <div class="loc-select__panel">
+    <input type="text" class="loc-select__search" placeholder="Search country…" autocomplete="off">
+    <div class="loc-select__list"></div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Smart Series — HABÄNE</title>
+  <link rel="icon" href="assets/brand/logo-white.png" />
+  <link rel="stylesheet" href="styles.css" />
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" defer></script>
+  <script src="https://unpkg.com/lucide@0.469.0/dist/umd/lucide.min.js" defer></script>
+</head>
+<body data-page="smart-series">
+
+  <header class="nav nav--solid" id="nav">
+    <button class="nav__burger" id="burger" type="button" aria-label="Menu"><span></span><span></span><span></span></button>
+    <nav class="nav__links nav__links--left">
+      <a href="index.html">Home</a><a href="smart-series.html">Smart Series</a>
+      <a href="index.html#showroom">3D Showroom</a><a href="index.html#contact">Contact</a>
+    </nav>
+    <a class="nav__logo" href="index.html"><img src="assets/brand/logo-white.png" alt="Habäne" /></a>
+    <nav class="nav__links nav__links--right">
+      <button class="nav__icon nav__iconbtn" id="searchBtn" type="button" aria-label="Search"><i data-lucide="search"></i></button>
+      <button class="nav__icon nav__iconbtn nav__wish" id="wishBtn" type="button" aria-label="Wishlist"><i data-lucide="heart"></i><em id="wishCount" hidden>0</em></button>
+      <div class="nav__profile"><button class="nav__icon nav__iconbtn" id="profileBtn" type="button"><i data-lucide="user"></i></button>
+        <div class="nav__profile-menu" id="profileMenu"><button type="button" data-auth>Log In</button><button type="button" data-auth>Sign Up</button></div></div>
+      <button class="nav__icon nav__iconbtn nav__cart" id="cartBtn" type="button"><i data-lucide="shopping-bag"></i><em id="cartCount">0</em></button>
+    </nav>
+  </header>
+
+  <div class="drawer" id="drawer">
+    <a href="index.html">Home</a><a href="shop.html">Shop</a><a href="smart-series.html">Smart Series</a>
+    <a href="#" class="drawer__cart" id="drawerCartLink">Cart (<span class="drawer-cart-count">0</span>)</a>
+  </div>
+
+  <main>
+    <section class="ss-hero">
+      <div class="ss-hero__sketches">
+        <figure><img src="assets/products/p4-smart-duffel-ivory.jpg" alt="Smart duffel design sketch"></figure>
+        <figure><img src="assets/products/p2-navy-metropolitan-duffel.jpg" alt="Pattern design"></figure>
+      </div>
+      <div class="ss-hero__copy">
+        <p class="hero__eyebrow">THE SMART SERIES</p>
+        <h1 class="ss-hero__title">Your bag, but it <em>thinks.</em></h1>
+        <p>Every Smart Series piece is engineered with integrated power, security, and organization — without sacrificing the Habäne aesthetic. We designed the blocks, built the tech, and stitched it all into carry you can trust.</p>
+        <p class="ss-hero__sub">WE ENGINEERED EVERY DETAIL</p>
+      </div>
+      <div class="ss-hero__gallery">
+        <img src="assets/products/p4-smart-duffel-ivory.jpg" alt="Smart duffel detail">
+        <img src="assets/products/p3-navy-voyager-duffel.jpg" alt="Voyager smart">
+        <img src="assets/products/alt-white-duffel.jpg" alt="Interior">
+        <img src="assets/products/p2-navy-metropolitan-duffel.jpg" alt="Craftsmanship">
+      </div>
+    </section>
+
+    <section class="ss-features">
+      <div class="ss-features__head">
+        <h2 class="section-title">SMART FEATURES</h2>
+        <p class="section-sub">Twelve innovations. One seamless experience.</p>
+      </div>
+      <div class="feat-grid" id="featGrid"></div>
+      <div class="ss-features__cta">
+        <a href="shop.html?cat=smart" class="spin-btn spin-btn--sm">
+          <span class="spin-btn__fill"></span>
+          <span class="spin-btn__label">SHOP SMART</span>
+          <span class="spin-btn__ring"><svg viewBox="0 0 100 100"><text><textPath href="#circlePath">SMART · CHARGE · CARRY · </textPath></text></svg></span>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><path id="circlePath" d="M 50,50 m -37,0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0" /></defs></svg>
+
+  <footer class="foot"><div class="foot__bottom" style="border:none;max-width:1280px;margin:0 auto"><p>© <span id="yr"></span> Habäne</p><a href="index.html" class="foot__vibe">Home</a></div></footer>
+
+  <div class="search-pop" id="searchPop" aria-hidden="true"><div class="search-pop__inner"><input type="text" id="searchInput" placeholder="Search…"><button class="search-pop__close" id="searchClose" type="button"><i data-lucide="x"></i></button><div class="search-pop__results" id="searchResults"></div></div></div>
+  <div class="cart" id="cart" aria-hidden="true"><div class="cart__overlay" data-cart-close></div><aside class="cart__panel"><header class="cart__head"><h3>Your Bag <span id="cartItems">(0)</span></h3><button class="cart__close" data-cart-close type="button"><i data-lucide="x"></i></button></header><div class="cart__ship"><p id="shipMsg"></p><div class="cart__bar"><span id="shipBar"></span></div></div><div class="cart__body" id="cartBody"></div><div class="cart__empty" id="cartEmpty"><div class="cart__empty-icon"><i data-lucide="luggage"></i></div></div><footer class="cart__foot" id="cartFoot"><div class="cart__row"><span>Subtotal</span><strong id="cartSubtotal">₹0</strong></div><button class="cart__checkout" id="checkoutBtn" type="button">CHECKOUT</button></footer></aside></div>
+  <div class="auth-pop" id="authPop" aria-hidden="true"><div class="auth-pop__overlay" id="authCloseOverlay"></div><div class="auth-pop__panel"><button class="auth-pop__close" id="authClose" type="button"><i data-lucide="x"></i></button><h3>Welcome</h3><button type="button" class="auth-pop__btn auth-pop__btn--primary">Log In</button></div></div>
+  <div class="loc-select" id="locSelect"><button type="button" class="loc-select__btn"></button><div class="loc-select__panel"><input type="text" class="loc-select__search" placeholder="Search country…"><div class="loc-select__list"></div></div></div>
+  <div class="toast" id="toast"></div>
+
+  <script src="js/data.js"></script>
+  <script src="js/store.js"></script>
+  <script src="js/components.js"></script>
+  <script src="js/smart-series.js"></script>
+</body>
+</html>
