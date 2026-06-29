@@ -9,11 +9,12 @@
     if (!grid) return;
 
     grid.innerHTML = H.SMART_FEATURES.map((f, i) => `
-      <article class="feat-card" data-index="${i}">
+      <a href="feature.html?id=${f.id}" class="feat-card" data-index="${i}">
         <div class="feat-card__icon">${H.icon(f.icon)}</div>
         <h3 class="feat-card__title">${f.title}</h3>
         <p class="feat-card__desc">${f.desc}</p>
-      </article>`).join('');
+        <span class="feat-card__more">Learn more <i data-lucide="arrow-right"></i></span>
+      </a>`).join('');
 
     H.refreshIcons(grid);
 

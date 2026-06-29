@@ -221,41 +221,81 @@ em{font-style:normal}
   color:transparent; -webkit-text-stroke:1.5px rgba(11,18,64,.4); opacity:.5;
 }
 
-/* ===================== ROTATING SPIN BUTTON (bluorng-style) ===================== */
-.spin-btn{
-  position:relative; display:inline-grid; place-items:center;
-  width:150px; height:150px; border-radius:999px;
-  background:var(--navy); color:#fff; isolation:isolate;
-  transition:transform .5s var(--ease), color .4s;
+/* ===================== HIGH-TECH HUD CTAs (Comet/Antigravity style) ===================== */
+.tech-cta-wrap {
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
 }
-.spin-btn__fill{
-  position:absolute; inset:0; border-radius:999px; z-index:-1;
-  background:radial-gradient(circle at 50% 120%, var(--ice) 0%, var(--ice-2) 45%, transparent 70%);
-  transform:scale(0); transform-origin:bottom; transition:transform .5s var(--ease);
+.tech-cta {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem 2.4rem;
+  background: #000000;
+  color: #ffffff !important;
+  font-family: "Conthrax", sans-serif;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-decoration: none;
+  text-transform: uppercase;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  overflow: hidden;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  z-index: 5;
 }
-.spin-btn:hover{ transform:scale(1.06); color:var(--navy) }
-.spin-btn:hover .spin-btn__fill{ transform:scale(1.2) }
-.spin-btn__label{
-  font-family:"Conthrax",sans-serif; font-size:.74rem; letter-spacing:.08em; z-index:2;
+.tech-cta::before {
+  content: '';
+  position: absolute;
+  top: 0; left: -150%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.3) 50%, rgba(255, 255, 255, 0) 100%);
+  transform: skewX(-25deg);
+  transition: none;
 }
-.spin-btn__arrow{
-  position:absolute; bottom:30px; font-size:.9rem; opacity:0; z-index:2;
-  transition:.4s var(--ease);
+.tech-cta:hover::before {
+  animation: shineSweep 1.5s infinite ease-in-out;
 }
-.spin-btn:hover .spin-btn__arrow{ opacity:1; bottom:24px }
-.spin-btn__ring{
-  position:absolute; inset:0; animation:spin 9s linear infinite;
+.tech-cta:hover {
+  background: #0b1240;
+  box-shadow: 0 0 25px rgba(143, 212, 236, 0.4);
+  border-color: rgba(143, 212, 236, 0.6);
+  transform: translateY(-2px);
 }
-.spin-btn__ring svg{ width:100%; height:100% }
-.spin-btn__ring text{
-  font-family:"Montserrat",sans-serif; font-weight:600;
-  font-size:8.5px; letter-spacing:1.5px; fill:#fff;
+.tech-cta-pulse {
+  position: absolute;
+  inset: -8px;
+  border: 1.5px solid rgba(143, 212, 236, 0.3);
+  border-radius: 0;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 1;
+  animation: pulseRadar 2.4s infinite cubic-bezier(0.215, 0.61, 0.355, 1);
 }
-.spin-btn:hover .spin-btn__ring text{ fill:var(--navy) }
-@keyframes spin{ to{ transform:rotate(360deg) } }
-.spin-btn--sm{ width:118px; height:118px }
-.spin-btn--sm .spin-btn__label{ font-size:.66rem }
-.spin-btn--sm .spin-btn__ring text{ font-size:9px }
+.tech-cta-pulse2 {
+  position: absolute;
+  inset: -16px;
+  border: 1px dashed rgba(143, 212, 236, 0.15);
+  border-radius: 0;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 1;
+  animation: pulseRadar 2.4s infinite cubic-bezier(0.215, 0.61, 0.355, 1) 0.8s;
+}
+
+@keyframes shineSweep {
+  0% { left: -150%; }
+  100% { left: 150%; }
+}
+@keyframes pulseRadar {
+  0% { transform: scale(0.95); opacity: 0; }
+  15% { opacity: 1; }
+  100% { transform: scale(1.1); opacity: 0; }
+}
 
 /* ghost button */
 .ghost-btn{
@@ -944,24 +984,6 @@ model-viewer#viewer{
   filter:blur(36px); border-radius:50%; pointer-events:none; z-index:1;
 }
 
-/* ---- hero shop CTA (3D bag) ---- */
-.hero-shop-cta{
-  display:inline-flex; flex-direction:column; align-items:center; gap:.6rem;
-  padding:1rem 1.4rem 1.2rem; border-radius:20px;
-  background:rgba(255,255,255,.45); border:1.5px solid rgba(11,18,64,.15);
-  backdrop-filter:blur(8px); transition:transform .35s var(--ease), box-shadow .35s var(--ease);
-  min-width:140px;
-}
-.hero-shop-cta:hover{
-  transform:translateY(-4px);
-  box-shadow:0 16px 36px rgba(11,18,64,.15);
-}
-.hero-shop-cta__anim{
-  position:relative; width:80px; height:88px; perspective:400px;
-}
-.hero-shop-cta__label{
-  font-family:"Conthrax",sans-serif; font-size:.72rem; letter-spacing:.1em; color:var(--navy);
-}
 
 /* ---- 3D bag model ---- */
 .bag3d-scene{ position:relative; width:100%; height:100%; perspective:400px }
@@ -1390,6 +1412,7 @@ a.contact__card:hover{ transform:translateY(-4px); box-shadow:0 16px 32px rgba(1
   padding:1.6rem; border-radius:18px; background:rgba(255,255,255,.55);
   border:1px solid rgba(255,255,255,.75); backdrop-filter:blur(6px);
   transition:transform .4s var(--ease), box-shadow .4s var(--ease);
+  text-decoration:none; color:inherit; display:flex; flex-direction:column;
 }
 .feat-card:hover{ transform:translateY(-6px); box-shadow:0 20px 40px rgba(11,18,64,.12) }
 .feat-card__icon{
@@ -1398,7 +1421,58 @@ a.contact__card:hover{ transform:translateY(-4px); box-shadow:0 16px 32px rgba(1
 }
 .feat-card__icon .icon{ width:22px; height:22px }
 .feat-card__title{ font-family:"Conthrax",sans-serif; font-size:.88rem; color:var(--navy); margin-bottom:.5rem }
-.feat-card__desc{ font-size:.82rem; line-height:1.55; color:#3a3f56 }
+.feat-card__desc{ font-size:.82rem; line-height:1.55; color:#3a3f56; flex-grow:1 }
+.feat-card__more{
+  display:inline-flex; align-items:center; gap:.35rem;
+  font-family:"Conthrax",sans-serif; font-size:.68rem; font-weight:700; letter-spacing:.04em;
+  text-transform:uppercase; color:var(--navy); margin-top:1rem; opacity:.8;
+  transition:opacity .25s, color .25s;
+}
+.feat-card:hover .feat-card__more{ opacity:1; color:var(--navy-2) }
+.feat-card__more i{ width:12px; height:12px; stroke-width:2.5; display:inline-flex; transition:transform .2s }
+.feat-card:hover .feat-card__more i{ transform:translateX(3px) }
+
+/* ---- smart feature details page ---- */
+.fd-page{ background:#f8fafc; min-height:calc(100vh - 180px); padding:clamp(2rem,5vw,4.5rem) 0 }
+.fd-container{ max-width:var(--maxw); margin:0 auto; padding:0 clamp(1rem,4vw,2.5rem) }
+.fd-back{
+  display:inline-flex; align-items:center; gap:.5rem; color:var(--navy);
+  font-family:"Conthrax",sans-serif; font-size:.76rem; font-weight:700; letter-spacing:.04em;
+  text-decoration:none; text-transform:uppercase; transition:transform .25s; margin-bottom:2.2rem;
+}
+.fd-back:hover{ transform:translateX(-4px) }
+.fd-back i{ width:14px; height:14px; stroke-width:2.5; display:inline-flex }
+.fd-hero{ display:grid; grid-template-columns:1.15fr 0.85fr; gap:4rem; align-items:start; margin-bottom:4rem }
+.fd-hero__left{ text-align:left }
+.fd-hero__icon-wrap{
+  width:64px; height:64px; border-radius:16px;
+  background:linear-gradient(135deg,var(--navy),var(--navy-2)); color:var(--ice);
+  display:grid; place-items:center; margin-bottom:1.5rem;
+}
+.fd-hero__icon-wrap i{ width:32px; height:32px; stroke-width:2; display:inline-flex }
+.fd-hero__title{
+  font-family:"Conthrax",sans-serif; font-size:clamp(2rem,5vw,3.2rem);
+  color:var(--navy); line-height:1.05; margin-bottom:1.2rem; letter-spacing:.01em;
+}
+.fd-hero__desc{ font-size:1.08rem; line-height:1.6; color:#4a4a4a; font-weight:500 }
+.fd-card{ background:#ffffff; border:1px solid #e5e7eb; padding:2.2rem; box-shadow:0 10px 30px rgba(0,0,0,0.03) }
+.fd-card h3{
+  font-family:"Conthrax",sans-serif; font-size:.88rem; letter-spacing:.06em;
+  color:var(--navy); margin-bottom:1.5rem; text-transform:uppercase;
+  border-bottom:1px solid #e5e7eb; padding-bottom:.8rem;
+}
+.fd-steps{ padding-left:1.2rem; margin:0; display:flex; flex-direction:column; gap:1.2rem }
+.fd-steps li{ font-size:.92rem; line-height:1.5; color:#4a4a4a; font-weight:500 }
+.fd-steps li::marker{ font-family:"Conthrax",sans-serif; font-weight:700; color:var(--navy-2) }
+.fd-compat{ border-top:1px solid #e5e7eb; padding-top:4rem; margin-bottom:4rem }
+.fd-section-title{
+  font-family:"Conthrax",sans-serif; font-size:1.4rem; color:var(--navy);
+  margin-bottom:2rem; text-transform:uppercase; letter-spacing:.02em; text-align:left;
+}
+.fd-info{ margin-bottom:2rem }
+.fd-info__card{ background:#0b1240; color:#ffffff; padding:2.5rem; text-align:left }
+.fd-info__card h3{ font-family:"Conthrax",sans-serif; font-size:.88rem; letter-spacing:.08em; color:var(--ice); margin-bottom:1rem; text-transform:uppercase }
+.fd-info__card p{ font-size:.96rem; line-height:1.65; color:rgba(255,255,255,.8); font-weight:400; max-width:800px; margin:0 }
 .ss-features__cta{ text-align:center; margin-top:2.5rem }
 
 /* ---- checkout page ---- */
@@ -1461,6 +1535,17 @@ a.contact__card:hover{ transform:translateY(-4px); box-shadow:0 16px 32px rgba(1
   .checkout-page__grid{ grid-template-columns:1fr }
   .ss-hero__gallery{ grid-template-columns:repeat(2,1fr) }
   .filter-panel__inner{ grid-template-columns:1fr; gap:1.5rem }
+  .fd-hero{ grid-template-columns:1fr; gap:2rem }
+  .fd-card{ padding:1.5rem }
+}
+@media(max-width:768px){
+  .card__body{ padding:.85rem }
+  .card__info{ flex-direction:column; align-items:flex-start; gap:.2rem }
+  .card__info-left, .card__info-right{ align-items:flex-start; text-align:left; width:100% }
+  .card__name{ font-size:.85rem }
+  .card__cat{ font-size:.68rem }
+  .card__price{ font-size:.85rem }
+  .card__was{ font-size:.72rem }
 }
 @media(max-width:520px){
   .grid{ grid-template-columns:repeat(2,1fr) }

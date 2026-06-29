@@ -127,8 +127,6 @@
       heroViewer.src = window.HABANE_MODELS.voyager;
     }
 
-    const bagCta = document.querySelector('#heroBagCta .hero-shop-cta__anim');
-    if (bagCta) H.initBag3d(bagCta);
     initFeatured();
     initSmartSplit();
     initFaqCarousel();
