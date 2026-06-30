@@ -457,22 +457,59 @@
     });
   }
 
-  /* ---- Footer trust bar (rayred-style, site-wide) ---- */
-  function initFooterTrust() {
+  /* ---- Rayred-style footer (every page except the homepage) ---- */
+  function initFooter() {
     const foot = document.querySelector('.foot');
-    if (!foot || foot.querySelector('.foot__trust')) return;
-    const items = [
-      ['truck', 'Free shipping over ₹4,999'],
-      ['banknote', 'COD available nationwide'],
-      ['rotate-ccw', '7-day easy returns'],
-      ['infinity', 'Lifetime zipper warranty'],
-    ];
-    const bar = document.createElement('div');
-    bar.className = 'foot__trust';
-    bar.innerHTML = items.map(([ic, txt]) =>
-      `<span class="foot__trust-item">${icon(ic)} ${txt}</span>`).join('');
-    foot.insertBefore(bar, foot.firstChild);
-    refreshIcons(bar);
+    if (!foot || document.body.dataset.page === 'home') return;
+    foot.innerHTML = `
+      <div class="foot__top">
+        <div class="foot__brand">
+          <img src="assets/brand/wordmark-silver.png" alt="Habäne" class="foot__word">
+          <p class="foot__tag">Carry the city. Leave the baggage.</p>
+          <div class="foot__social">
+            <a href="#" aria-label="Instagram">${icon('instagram')}</a>
+            <a href="#" aria-label="YouTube">${icon('youtube')}</a>
+            <a href="#" aria-label="Twitter">${icon('twitter')}</a>
+          </div>
+        </div>
+        <div class="foot__col">
+          <h4>Shop</h4>
+          <a href="shop.html">All Products</a>
+          <a href="shop.html?cat=duffel">Duffels</a>
+          <a href="shop.html?cat=backpack">Backpacks</a>
+          <a href="smart-series.html">Smart Series</a>
+        </div>
+        <div class="foot__col">
+          <h4>About Us</h4>
+          <a href="index.html#story">Our Story</a>
+          <a href="contact.html">Contact Us</a>
+          <a href="showroom.html">3D Showroom</a>
+        </div>
+        <div class="foot__col">
+          <h4>Help</h4>
+          <a href="#">Track Your Order</a>
+          <a href="#">Returns &amp; Exchange</a>
+          <a href="#">Shipping Info</a>
+        </div>
+      </div>
+      <div class="foot__bottom">
+        <p>© <span id="yr"></span> Habäne. All rights reserved.</p>
+        <a href="index.html" class="foot__vibe">Back to home</a>
+      </div>`;
+    refreshIcons(foot);
+  }
+
+  /* ---- Floating 3D Showroom button (bottom-right) ---- */
+  function initShowroomFab() {
+    if (document.body.dataset.page === 'showroom') return;
+    if (document.querySelector('.showroom-fab')) return;
+    const a = document.createElement('a');
+    a.href = 'showroom.html';
+    a.className = 'showroom-fab';
+    a.setAttribute('aria-label', 'Open 3D Showroom');
+    a.innerHTML = `${icon('box')}<span>3D Showroom</span>`;
+    document.body.appendChild(a);
+    refreshIcons(a);
   }
 
   /* ---- Boot shared UI ---- */
@@ -485,7 +522,8 @@
     initSearch();
     initCart();
     initRibbon();
-    initFooterTrust();
+    initFooter();
+    initShowroomFab();
     const yr = $('#yr');
     if (yr) yr.textContent = new Date().getFullYear();
     refreshIcons();

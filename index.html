@@ -29,7 +29,6 @@
       <a href="shop.html" class="nav__shop">Shop All</a>
       <a href="smart-series.html">Smart Series</a>
       <a href="contact.html">Contact</a>
-      <a href="showroom.html" class="nav__cta">3D Showroom</a>
     </nav>
 
     <a class="nav__logo" href="index.html">
@@ -109,15 +108,21 @@
       </div>
     </section>
 
-    <section class="featured" id="shop">
-      <div class="featured__head">
-        <h2 class="section-title">SHOP THE RANGE</h2>
-        <p class="section-sub">Three icons. Infinite destinations.</p>
+    <section class="featured featured--carousel" id="shop">
+      <div class="featured__head featured__head--row">
+        <div class="featured__head-left">
+          <h2 class="section-title">SHOP THE RANGE</h2>
+          <p class="section-sub">Built for everywhere. Carry the city.</p>
+        </div>
+        <div class="featured__head-actions">
+          <a href="shop.html" class="explore-all">Explore All Products <i data-lucide="arrow-right"></i></a>
+          <div class="carousel-nav">
+            <button type="button" class="carousel-btn" id="rangePrev" aria-label="Previous"><i data-lucide="chevron-left"></i></button>
+            <button type="button" class="carousel-btn" id="rangeNext" aria-label="Next"><i data-lucide="chevron-right"></i></button>
+          </div>
+        </div>
       </div>
-      <div class="grid grid--featured" id="grid"></div>
-      <div class="featured__more">
-        <a href="shop.html" class="view-more">View All Products <i data-lucide="arrow-right"></i></a>
-      </div>
+      <div class="featured__track" id="grid"></div>
     </section>
 
     <!-- HABÄNE scrolling band (moved here, right after Shop the Range) -->

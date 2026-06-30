@@ -4,13 +4,27 @@
   const H = window.HABANE;
 
   function initFeatured() {
-    const grid = document.getElementById('grid');
-    if (!grid) return;
-    const featured = H.PRODUCTS.filter(p => p.featured).slice(0, 3);
-    grid.innerHTML = featured.map(p => H.cardHTML(p)).join('');
-    H.bindGrid(grid);
+    const track = document.getElementById('grid');
+    if (!track) return;
+    // show a fuller range in the carousel (featured + best-sellers first)
+    const priority = H.PRODUCTS.filter(p => p.featured || p.bestSelling);
+    const rest = H.PRODUCTS.filter(p => !p.featured && !p.bestSelling);
+    const list = [...priority, ...rest].slice(0, 12);
+    track.innerHTML = list.map(p => H.cardHTML(p)).join('');
+    H.bindGrid(track);
     H.observeCards();
     H.refreshIcons();
+
+    // left/right carousel controls
+    const prev = document.getElementById('rangePrev');
+    const next = document.getElementById('rangeNext');
+    const step = () => {
+      const card = track.querySelector('.card');
+      const w = card ? card.getBoundingClientRect().width + 20 : 320;
+      return Math.max(w, Math.round(track.clientWidth * 0.8));
+    };
+    prev?.addEventListener('click', () => track.scrollBy({ left: -step(), behavior: 'smooth' }));
+    next?.addEventListener('click', () => track.scrollBy({ left: step(), behavior: 'smooth' }));
   }
 
   function initSmartSplit() {

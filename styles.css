@@ -1194,6 +1194,64 @@ model-viewer#viewer{
 .view-more:hover{ background:var(--navy); color:#fff }
 .view-more .icon{ width:16px; height:16px }
 .card__link{ color:inherit; display:flex; flex-direction:column; flex:1 }
+
+/* ---- Shop the Range carousel (full-bleed) ---- */
+.featured--carousel{ max-width:none; margin:clamp(3rem,7vw,5rem) 0; padding:0 }
+.featured__head--row{
+  max-width:var(--maxw); margin:0 auto 1.8rem; padding:0 clamp(1rem,4vw,2.5rem);
+  display:flex; justify-content:space-between; align-items:flex-end; gap:1rem; text-align:left;
+}
+.featured__head-left .section-sub{ margin-top:.3rem }
+.featured__head-actions{ display:flex; align-items:center; gap:1rem; flex-shrink:0 }
+.explore-all{
+  display:inline-flex; align-items:center; gap:.5rem;
+  font-family:"Conthrax",sans-serif; font-size:.74rem; letter-spacing:.07em;
+  color:#fff; background:var(--navy); padding:.8rem 1.4rem; border-radius:999px;
+  transition:.3s var(--ease); white-space:nowrap;
+}
+.explore-all:hover{ background:var(--navy-2); transform:translateY(-1px); color:#fff }
+.explore-all i{ width:15px; height:15px }
+.carousel-nav{ display:flex; gap:.5rem }
+.carousel-btn{
+  width:42px; height:42px; border-radius:50%; cursor:pointer;
+  border:1.5px solid rgba(11,18,64,.2); background:rgba(255,255,255,.7); color:var(--navy);
+  display:grid; place-items:center; transition:.25s var(--ease);
+}
+.carousel-btn:hover{ background:var(--navy); color:#fff; border-color:var(--navy) }
+.carousel-btn i{ width:18px; height:18px }
+.featured__track{
+  display:flex; gap:20px; overflow-x:auto; overflow-y:hidden;
+  scroll-snap-type:x mandatory; padding:.4rem 0 1.5rem; scroll-padding-left:0;
+  scrollbar-width:none; -ms-overflow-style:none;
+}
+.featured__track::-webkit-scrollbar{ display:none }
+.featured__track > .card{
+  flex:0 0 clamp(250px, 24vw, 320px);
+  scroll-snap-align:start;
+}
+.featured__track > .card:first-child{ margin-left:0 }
+@media(max-width:860px){
+  .featured__head--row{ flex-direction:column; align-items:flex-start }
+  .featured__track > .card{ flex-basis:72vw }
+}
+
+/* ---- Floating 3D Showroom button (bottom-right, mirrors the flag) ---- */
+.showroom-fab{
+  position:fixed; right:20px; bottom:22px; z-index:70;
+  display:inline-flex; align-items:center; gap:.5rem;
+  padding:.7rem 1.15rem; border-radius:999px;
+  background:linear-gradient(135deg,var(--navy),var(--navy-2)); color:#fff;
+  border:1px solid rgba(255,255,255,.16);
+  box-shadow:0 10px 28px rgba(11,18,64,.32);
+  font-family:"Conthrax",sans-serif; font-size:.72rem; letter-spacing:.06em;
+  transition:transform .25s var(--ease), box-shadow .3s var(--ease), color .3s;
+}
+.showroom-fab:hover{ transform:translateY(-2px); box-shadow:0 14px 34px rgba(11,18,64,.42); color:var(--ice) }
+.showroom-fab i{ width:18px; height:18px }
+@media(max-width:520px){
+  .showroom-fab{ right:12px; bottom:12px; padding:.7rem }
+  .showroom-fab span{ display:none }
+}
 .card__wish.liked{ background:var(--maroon); color:#fff }
 .card__wish.liked .icon, .card__wish.liked svg{ fill:var(--maroon); stroke:#fff }
 
