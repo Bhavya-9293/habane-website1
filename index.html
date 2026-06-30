@@ -28,6 +28,7 @@
       <a href="index.html">Home</a>
       <a href="shop.html" class="nav__shop">Shop All</a>
       <a href="smart-series.html">Smart Series</a>
+      <a href="about.html">About Us</a>
       <a href="contact.html">Contact</a>
     </nav>
 
@@ -68,6 +69,7 @@
     <a href="index.html">Home</a>
     <a href="shop.html">Shop All</a>
     <a href="smart-series.html">Smart Series</a>
+      <a href="about.html">About Us</a>
     <a href="showroom.html">3D Showroom</a>
     <a href="contact.html">Contact</a>
     <a href="#" class="drawer__cart" id="drawerCartLink">Cart (<span class="drawer-cart-count">0</span>)</a>
@@ -91,19 +93,22 @@
               <div class="tech-cta-pulse2"></div>
               <a href="shop.html" class="tech-cta" id="heroBagCta">SHOP NOW</a>
             </div>
-            <a href="showroom.html" class="ghost-btn">
-              <span>Explore in 3D</span>
+            <a href="about.html" class="ghost-btn">
+              <span>Our Story</span>
               <i data-lucide="arrow-right"></i>
             </a>
           </div>
         </div>
-        <div class="hero__bag-3d-wrap">
-          <model-viewer id="heroViewer" alt="Habäne Travel Bag — interactive 3D model"
-            camera-controls auto-rotate auto-rotate-delay="0" rotation-per-second="15deg"
-            interaction-prompt="none" shadow-intensity="1.2" shadow-softness="0.8" exposure="1.1"
-            environment-image="neutral" camera-orbit="45deg 75deg 110%" disable-zoom touch-action="none">
-          </model-viewer>
-          <div class="hero__bag-glow"></div>
+        <div class="hero__logo3d-wrap">
+          <div class="logo3d" id="logo3d" title="Drag to spin">
+            <div class="logo3d__face logo3d__face--front">
+              <img src="assets/brand/logo-white.png" alt="Habäne">
+            </div>
+            <div class="logo3d__face logo3d__face--back">
+              <img src="assets/brand/logo-white.png" alt="">
+            </div>
+          </div>
+          <div class="logo3d__shadow"></div>
         </div>
       </div>
     </section>
@@ -114,15 +119,13 @@
           <h2 class="section-title">SHOP THE RANGE</h2>
           <p class="section-sub">Built for everywhere. Carry the city.</p>
         </div>
-        <div class="featured__head-actions">
-          <a href="shop.html" class="explore-all">Explore All Products <i data-lucide="arrow-right"></i></a>
-          <div class="carousel-nav">
-            <button type="button" class="carousel-btn" id="rangePrev" aria-label="Previous"><i data-lucide="chevron-left"></i></button>
-            <button type="button" class="carousel-btn" id="rangeNext" aria-label="Next"><i data-lucide="chevron-right"></i></button>
-          </div>
-        </div>
+        <a href="shop.html" class="explore-all">Explore All Products <i data-lucide="arrow-right"></i></a>
       </div>
-      <div class="featured__track" id="grid"></div>
+      <div class="featured__carousel-wrap">
+        <button type="button" class="carousel-btn carousel-btn--prev" id="rangePrev" aria-label="Previous"><i data-lucide="chevron-left"></i></button>
+        <div class="featured__track" id="grid"></div>
+        <button type="button" class="carousel-btn carousel-btn--next" id="rangeNext" aria-label="Next"><i data-lucide="chevron-right"></i></button>
+      </div>
     </section>
 
     <!-- HABÄNE scrolling band (moved here, right after Shop the Range) -->
@@ -198,6 +201,7 @@
         <a href="shop.html?cat=duffel">Duffels</a>
         <a href="shop.html?cat=backpack">Backpacks</a>
         <a href="smart-series.html">Smart Series</a>
+      <a href="about.html">About Us</a>
       </div>
       <div class="foot__col">
         <h4>Company</h4>
@@ -279,12 +283,9 @@
 
   <div class="toast" id="toast"></div>
 
-  <script type="module" src="https://cdn.jsdelivr.net/npm/@google/model-viewer@3.5.0/dist/model-viewer.min.js"></script>
-  <script src="assets/3d/models.js"></script>
   <script src="js/data.js"></script>
   <script src="js/store.js"></script>
   <script src="js/components.js"></script>
-  <script src="js/bag-3d.js"></script>
   <script src="js/home.js"></script>
 </body>
 </html>

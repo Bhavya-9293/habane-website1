@@ -17,6 +17,7 @@
       <a href="index.html">Home</a>
       <a href="shop.html" class="nav__shop">Shop All</a>
       <a href="smart-series.html">Smart Series</a>
+      <a href="about.html">About Us</a>
       <a href="contact.html">Contact</a>
     </nav>
     <a class="nav__logo" href="index.html"><img src="assets/brand/logo-white.png" alt="Habäne" /></a>
@@ -42,6 +43,7 @@
     <a href="index.html">Home</a>
     <a href="shop.html">Shop All</a>
     <a href="smart-series.html">Smart Series</a>
+      <a href="about.html">About Us</a>
     <a href="showroom.html">3D Showroom</a>
     <a href="contact.html">Contact</a>
     <a href="#" class="drawer__cart" id="drawerCartLink">Cart (<span class="drawer-cart-count">0</span>)</a>
@@ -97,9 +99,17 @@
         </div>
       </div>
     </div>
+
+    <section class="recommend" id="pdRelated">
+      <div class="recommend__head">
+        <h2 class="section-title">YOU MAY ALSO LIKE</h2>
+        <p class="section-sub">Carries that pair well with this one.</p>
+      </div>
+      <div class="grid grid--featured" id="relatedGrid"></div>
+    </section>
   </main>
 
-  <footer class="foot"><div class="foot__bottom" style="border:none;max-width:1280px;margin:0 auto"><p>© <span id="yr"></span> Habäne</p></div></footer>
+  <footer class="foot"></footer>
 
   <div class="search-pop" id="searchPop" aria-hidden="true"><div class="search-pop__inner"><input type="text" id="searchInput" placeholder="Search…"><button class="search-pop__close" id="searchClose" type="button"><i data-lucide="x"></i></button><div class="search-pop__results" id="searchResults"></div></div></div>
   <div class="cart" id="cart" aria-hidden="true"><div class="cart__overlay" data-cart-close></div><aside class="cart__panel"><header class="cart__head"><h3>Your Bag <span id="cartItems">(0)</span></h3><button class="cart__close" data-cart-close type="button"><i data-lucide="x"></i></button></header><div class="cart__ship"><p id="shipMsg"></p><div class="cart__bar"><span id="shipBar"></span></div></div><div class="cart__body" id="cartBody"></div><div class="cart__empty" id="cartEmpty"><div class="cart__empty-icon"><i data-lucide="luggage"></i></div><p>Empty</p></div><footer class="cart__foot" id="cartFoot"><div class="cart__row"><span>Subtotal</span><strong id="cartSubtotal">₹0</strong></div><button class="cart__checkout" id="checkoutBtn" type="button">CHECKOUT</button></footer></aside></div>

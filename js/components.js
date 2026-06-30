@@ -301,7 +301,40 @@
           : `Add <strong>${inr(FREE_SHIP - sub)}</strong> more for <strong>free shipping</strong>`;
       }
     }
+    renderCartRecommend();
     refreshIcons(cartEl);
+  }
+
+  /* ---- "You may also like" inside the cart ---- */
+  function renderCartRecommend() {
+    const panel = document.querySelector('.cart__panel');
+    const foot = $('#cartFoot');
+    if (!panel || !foot) return;
+    let rec = $('#cartRecommend');
+    if (!H.cartData.length) { if (rec) rec.remove(); return; }
+    const inCart = new Set(H.cartData.map(i => i.id));
+    const picks = H.PRODUCTS
+      .filter(p => !inCart.has(p.id))
+      .sort((a, b) => (b.bestSelling ? 1 : 0) - (a.bestSelling ? 1 : 0))
+      .slice(0, 3);
+    if (!picks.length) { if (rec) rec.remove(); return; }
+    if (!rec) {
+      rec = document.createElement('div');
+      rec.id = 'cartRecommend';
+      rec.className = 'cart-rec';
+      panel.insertBefore(rec, foot);
+    }
+    rec.innerHTML = `<h4 class="cart-rec__head">You may also like</h4>` +
+      picks.map(p => `
+        <div class="cart-rec__item">
+          <a class="cart-rec__link" href="product.html?id=${p.id}"><img src="${p.img}" alt="${p.name}"></a>
+          <div class="cart-rec__info">
+            <a href="product.html?id=${p.id}"><strong>${p.name}</strong></a>
+            <span>${inr(p.price)}</span>
+          </div>
+          <button class="cart-rec__add" type="button" data-rec-add="${p.id}" aria-label="Add ${p.name} to cart">${icon('plus')}</button>
+        </div>`).join('');
+    refreshIcons(rec);
   }
 
   function bumpCart() {
@@ -335,6 +368,13 @@
     $('#checkoutBtn')?.addEventListener('click', () => {
       if (!H.cartData.length) return;
       window.location.href = 'checkout.html';
+    });
+    document.querySelector('.cart__panel')?.addEventListener('click', e => {
+      const add = e.target.closest('[data-rec-add]');
+      if (!add) return;
+      e.preventDefault();
+      const p = byId(add.dataset.recAdd);
+      if (p) H.addToCartUI(p.id, p.colors[0].name, p.sizes[0], 1);
     });
     H.events.addEventListener('cart:update', syncCart);
     syncCart();

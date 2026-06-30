@@ -1046,6 +1046,35 @@ model-viewer#viewer{
   filter:blur(36px); border-radius:50%; pointer-events:none; z-index:1;
 }
 
+/* ---- Rotating Habäne logo medallion (hero) ---- */
+.hero__logo3d-wrap{
+  position:relative; display:flex; justify-content:center; align-items:center;
+  min-height:400px; width:100%; perspective:1100px;
+}
+.logo3d{
+  position:relative; width:clamp(220px,26vw,320px); aspect-ratio:1/1;
+  transform-style:preserve-3d; cursor:grab; z-index:2; touch-action:none;
+  will-change:transform;
+}
+.logo3d.is-grabbing{ cursor:grabbing }
+.logo3d__face{
+  position:absolute; inset:0; border-radius:50%;
+  display:grid; place-items:center; backface-visibility:hidden;
+  background:radial-gradient(circle at 36% 30%, #1a2766 0%, var(--navy) 52%, var(--navy-deep) 100%);
+  box-shadow:
+    inset 0 2px 10px rgba(255,255,255,.18),
+    inset 0 -8px 22px rgba(0,0,0,.45),
+    0 0 0 2px #cdd0d6, 0 0 0 9px rgba(154,158,168,.45),
+    0 40px 60px rgba(11,18,64,.4);
+}
+.logo3d__face--back{ transform:rotateY(180deg) }
+.logo3d__face img{ width:60%; height:auto; filter:drop-shadow(0 4px 10px rgba(0,0,0,.35)) }
+.logo3d__shadow{
+  position:absolute; bottom:6%; width:62%; height:34px; border-radius:50%;
+  background:radial-gradient(ellipse, rgba(11,18,64,.32), transparent 70%);
+  filter:blur(8px); z-index:1; pointer-events:none;
+}
+
 
 /* ---- 3D bag model ---- */
 .bag3d-scene{ position:relative; width:100%; height:100%; perspective:400px }
@@ -1211,14 +1240,20 @@ model-viewer#viewer{
 }
 .explore-all:hover{ background:var(--navy-2); transform:translateY(-1px); color:#fff }
 .explore-all i{ width:15px; height:15px }
-.carousel-nav{ display:flex; gap:.5rem }
+
+/* carousel side arrows (centered on the cards, one at each edge) */
+.featured__carousel-wrap{ position:relative }
 .carousel-btn{
-  width:42px; height:42px; border-radius:50%; cursor:pointer;
-  border:1.5px solid rgba(11,18,64,.2); background:rgba(255,255,255,.7); color:var(--navy);
+  position:absolute; top:38%; transform:translateY(-50%); z-index:6;
+  width:52px; height:52px; border-radius:50%; cursor:pointer;
+  border:1px solid rgba(11,18,64,.12); background:rgba(255,255,255,.92);
+  color:var(--navy); box-shadow:0 10px 26px rgba(11,18,64,.18);
   display:grid; place-items:center; transition:.25s var(--ease);
 }
-.carousel-btn:hover{ background:var(--navy); color:#fff; border-color:var(--navy) }
-.carousel-btn i{ width:18px; height:18px }
+.carousel-btn:hover{ background:var(--navy); color:#fff; border-color:var(--navy); box-shadow:0 12px 30px rgba(11,18,64,.3) }
+.carousel-btn i{ width:22px; height:22px }
+.carousel-btn--prev{ left:14px }
+.carousel-btn--next{ right:14px }
 .featured__track{
   display:flex; gap:20px; overflow-x:auto; overflow-y:hidden;
   scroll-snap-type:x mandatory; padding:.4rem 0 1.5rem; scroll-padding-left:0;
@@ -1233,6 +1268,7 @@ model-viewer#viewer{
 @media(max-width:860px){
   .featured__head--row{ flex-direction:column; align-items:flex-start }
   .featured__track > .card{ flex-basis:72vw }
+  .carousel-btn{ width:44px; height:44px }
 }
 
 /* ---- Floating 3D Showroom button (bottom-right, mirrors the flag) ---- */
@@ -1252,6 +1288,67 @@ model-viewer#viewer{
   .showroom-fab{ right:12px; bottom:12px; padding:.7rem }
   .showroom-fab span{ display:none }
 }
+
+/* ---- "You may also like" — product page ---- */
+.recommend{ max-width:var(--maxw); margin:clamp(2.5rem,6vw,4.5rem) auto 0; padding:0 clamp(1rem,4vw,2.5rem) }
+.recommend__head{ text-align:center; margin-bottom:2rem }
+
+/* ---- Cart "You may also like" ---- */
+.cart-rec{ padding:1rem 1.4rem 0; border-top:1px solid rgba(11,18,64,.08) }
+.cart-rec__head{ font-family:"Conthrax",sans-serif; font-size:.72rem; letter-spacing:.08em; color:var(--navy); margin:.4rem 0 .8rem; text-transform:uppercase }
+.cart-rec__item{ display:flex; align-items:center; gap:.8rem; padding:.5rem 0 }
+.cart-rec__link img{ width:54px; height:54px; object-fit:cover; border-radius:8px; display:block }
+.cart-rec__info{ flex:1; min-width:0 }
+.cart-rec__info strong{ display:block; font-size:.82rem; color:var(--navy); font-weight:600; white-space:nowrap; overflow:hidden; text-overflow:ellipsis }
+.cart-rec__info span{ font-size:.8rem; color:#6a6f82; font-weight:600 }
+.cart-rec__add{
+  width:34px; height:34px; flex:0 0 auto; border-radius:50%; border:0; cursor:pointer;
+  background:var(--navy); color:#fff; display:grid; place-items:center; transition:.25s var(--ease);
+}
+.cart-rec__add:hover{ background:var(--navy-2); transform:scale(1.08) }
+.cart-rec__add i{ width:16px; height:16px }
+
+/* ---- About Us page ---- */
+.about-page{ overflow:hidden }
+.about-hero{ max-width:880px; margin:0 auto; padding:clamp(2.5rem,6vw,4.5rem) clamp(1rem,4vw,2.5rem) 0; text-align:center }
+.about-hero__title{ font-family:"Conthrax",sans-serif; font-size:clamp(2rem,6vw,3.6rem); color:var(--navy); line-height:1.06; margin:.6rem 0 1.2rem }
+.about-hero__title span{ color:var(--maroon) }
+.about-hero__lead{ font-size:1.05rem; line-height:1.75; color:#3a3f56; max-width:64ch; margin:0 auto }
+.about-stats{
+  max-width:var(--maxw); margin:clamp(2.5rem,6vw,4rem) auto; padding:0 clamp(1rem,4vw,2.5rem);
+  display:grid; grid-template-columns:repeat(4,1fr); gap:1rem; text-align:center;
+}
+.about-stats div{ display:flex; flex-direction:column; gap:.3rem; padding:1.4rem 1rem; border-radius:16px;
+  background:rgba(255,255,255,.5); border:1px solid rgba(255,255,255,.7) }
+.about-stats strong{ font-family:"Conthrax",sans-serif; font-size:clamp(1.5rem,3vw,2.2rem); color:var(--navy) }
+.about-stats span{ font-size:.78rem; color:#6a6f82 }
+.about-values{ max-width:var(--maxw); margin:clamp(2.5rem,6vw,4rem) auto; padding:0 clamp(1rem,4vw,2.5rem) }
+.about-values__head{ text-align:center; margin-bottom:2.2rem }
+.about-values__grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:1.4rem }
+.about-value{ background:rgba(255,255,255,.55); border:1px solid rgba(11,18,64,.08); border-radius:18px; padding:2rem 1.6rem }
+.about-value__icon{ width:54px; height:54px; border-radius:14px; display:grid; place-items:center;
+  background:linear-gradient(135deg,var(--navy),var(--navy-2)); margin-bottom:1.1rem }
+.about-value__icon i{ width:26px; height:26px; color:var(--ice) }
+.about-value h3{ font-family:"Conthrax",sans-serif; font-size:1.05rem; color:var(--navy); margin-bottom:.6rem }
+.about-value p{ font-size:.9rem; line-height:1.65; color:#3a3f56 }
+.about-material{
+  max-width:var(--maxw); margin:clamp(2.5rem,6vw,4rem) auto; padding:0 clamp(1rem,4vw,2.5rem);
+  display:grid; grid-template-columns:1fr 1fr; gap:clamp(1.5rem,4vw,3.5rem); align-items:center;
+}
+.about-material__media{ border-radius:24px; overflow:hidden; background:linear-gradient(135deg,var(--navy),var(--navy-deep)); padding:6% }
+.about-material__media img{ width:100%; border-radius:14px; display:block }
+.about-material__title{ font-family:"Conthrax",sans-serif; font-size:clamp(1.8rem,4.5vw,2.8rem); color:var(--navy); line-height:1.06; margin:.4rem 0 1rem }
+.about-material__copy p{ color:#3a3f56; line-height:1.7; max-width:50ch; margin-bottom:1.6rem }
+.about-cta{ text-align:center; max-width:720px; margin:clamp(2.5rem,6vw,4rem) auto; padding:0 clamp(1rem,4vw,2.5rem) }
+.about-cta h2{ font-family:"Conthrax",sans-serif; font-size:clamp(1.6rem,4vw,2.4rem); color:var(--navy); margin-bottom:.6rem }
+.about-cta p{ color:#3a3f56; margin-bottom:1.8rem }
+.about-cta__btns{ display:flex; gap:1rem; justify-content:center; flex-wrap:wrap }
+@media(max-width:860px){
+  .about-stats{ grid-template-columns:repeat(2,1fr) }
+  .about-values__grid{ grid-template-columns:1fr }
+  .about-material{ grid-template-columns:1fr }
+}
+
 .card__wish.liked{ background:var(--maroon); color:#fff }
 .card__wish.liked .icon, .card__wish.liked svg{ fill:var(--maroon); stroke:#fff }
 
@@ -1303,13 +1400,16 @@ model-viewer#viewer{
   display:flex; flex-wrap:wrap; align-items:flex-end; gap:1rem;
 }
 .faq-carousel__head .section-sub{ flex:1; min-width:200px }
-.faq-carousel__controls{ display:flex; gap:.5rem; margin-left:auto }
+.faq-carousel__controls{ display:flex; gap:.6rem; margin-left:auto }
 .faq-carousel__controls button{
-  width:42px; height:42px; border-radius:50%; border:1.5px solid rgba(11,18,64,.2);
-  background:rgba(255,255,255,.7); cursor:pointer; display:grid; place-items:center;
-  transition:.3s var(--ease);
+  width:48px; height:48px; border-radius:50%; border:0;
+  background:linear-gradient(135deg,var(--navy),var(--navy-2)); color:#fff; cursor:pointer;
+  display:grid; place-items:center; box-shadow:0 8px 20px rgba(11,18,64,.28);
+  transition:transform .25s var(--ease), box-shadow .3s var(--ease), background .3s;
 }
-.faq-carousel__controls button:hover{ background:var(--navy); color:#fff; border-color:var(--navy) }
+.faq-carousel__controls button:hover{ transform:translateY(-2px); box-shadow:0 12px 28px rgba(11,18,64,.4) }
+.faq-carousel__controls button:active{ transform:translateY(0) }
+.faq-carousel__controls button i{ width:20px; height:20px }
 .faq-carousel__viewport{ overflow:hidden; padding-left:clamp(1rem,4vw,2.5rem) }
 .faq-carousel__track{ display:flex; gap:1.2rem; transition:transform .55s var(--ease); cursor:grab }
 .faq-carousel__track:active{ cursor:grabbing }
@@ -1327,10 +1427,11 @@ model-viewer#viewer{
 .faq-card__a{ font-size:.9rem; line-height:1.65; color:#3a3f56; flex:1 }
 .faq-card__nav{ display:flex; gap:.5rem; margin-top:1.2rem; justify-content:flex-end }
 .faq-card__arrow{
-  width:36px; height:36px; border-radius:50%; border:1.5px solid rgba(11,18,64,.2);
-  background:#fff; cursor:pointer; display:grid; place-items:center; transition:.25s;
+  width:40px; height:40px; border-radius:50%; border:0;
+  background:rgba(11,18,64,.08); color:var(--navy); cursor:pointer; display:grid; place-items:center;
+  transition:transform .25s var(--ease), background .25s, color .25s;
 }
-.faq-card__arrow:hover{ background:var(--navy); color:#fff }
+.faq-card__arrow:hover{ background:var(--navy); color:#fff; transform:translateY(-2px) }
 
 /* ---- contact ---- */
 .contact{ max-width:var(--maxw); margin:0 auto clamp(3rem,7vw,5rem); padding:0 clamp(1rem,4vw,2.5rem); text-align:center }
@@ -1765,6 +1866,7 @@ a.contact__card:hover{ transform:translateY(-4px); box-shadow:0 16px 32px rgba(1
   .hero--bag .hero__sub{ max-width:100%; margin-left:auto; margin-right:auto }
   .hero__cta{ justify-content:center }
   .hero__bag-3d-wrap{ min-height:300px; order:-1 }
+  .hero__logo3d-wrap{ min-height:300px; order:-1 }
   .smart-split{ grid-template-columns:1fr }
   .faq-card{ grid-template-columns:1fr }
   .faq-card__media img{ min-height:200px; max-height:240px }

@@ -72,11 +72,24 @@
     }
   }
 
+  function renderRelated(p) {
+    const wrap = document.getElementById('relatedGrid');
+    if (!wrap) return;
+    const same = H.PRODUCTS.filter(x => x.id !== p.id && x.cat === p.cat);
+    const others = H.PRODUCTS.filter(x => x.id !== p.id && x.cat !== p.cat);
+    const rel = [...same, ...others].slice(0, 4);
+    wrap.innerHTML = rel.map(x => H.cardHTML(x)).join('');
+    H.bindGrid(wrap);
+    H.observeCards();
+    H.refreshIcons(wrap);
+  }
+
   document.addEventListener('DOMContentLoaded', () => {
     H.initShared();
     const p = H.byId(id);
     render(p);
     if (!p) return;
+    renderRelated(p);
 
     document.getElementById('pdThumbs')?.addEventListener('click', e => {
       const t = e.target.closest('.pd__thumb');

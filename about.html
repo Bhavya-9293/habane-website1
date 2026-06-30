@@ -3,13 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>3D Showroom — HABÄNE</title>
-  <meta name="description" content="Spin, zoom and inspect Habäne luggage in interactive 3D — or browse the full product gallery." />
+  <title>About Us — HABÄNE</title>
+  <meta name="description" content="The Habäne story — premium luggage in midnight navy and metallic silver, engineered to keep up with your life." />
   <link rel="icon" href="assets/brand/logo-white.png" />
   <link rel="stylesheet" href="styles.css" />
   <script src="https://unpkg.com/lucide@0.469.0/dist/umd/lucide.min.js" defer></script>
 </head>
-<body data-page="showroom">
+<body data-page="about">
 
   <header class="nav nav--solid" id="nav">
     <button class="nav__burger" id="burger" type="button" aria-label="Menu"><span></span><span></span><span></span></button>
@@ -45,68 +45,73 @@
     <a href="index.html">Home</a>
     <a href="shop.html">Shop All</a>
     <a href="smart-series.html">Smart Series</a>
-      <a href="about.html">About Us</a>
+    <a href="about.html">About Us</a>
     <a href="showroom.html">3D Showroom</a>
     <a href="contact.html">Contact</a>
     <a href="#" class="drawer__cart" id="drawerCartLink">Cart (<span class="drawer-cart-count">0</span>)</a>
   </div>
 
-  <main>
-    <section class="showroom" id="showroom">
-      <div class="showroom__head">
-        <p class="hero__eyebrow">3D SHOWROOM</p>
-        <h2 class="section-title">SPIN IT. INSPECT IT.</h2>
-        <p class="section-sub">Drag to rotate · scroll to zoom · double-tap to recenter.</p>
+  <main class="about-page">
+    <section class="about-hero">
+      <p class="hero__eyebrow">OUR STORY</p>
+      <h1 class="about-hero__title">Bags for people who<br><span>can't sit still.</span></h1>
+      <p class="about-hero__lead">Habäne started with one idea — your luggage should keep up with your life, not slow it down. Every piece is engineered in midnight navy and metallic silver, printed with hand-drawn skylines, and built to survive the chaos of actually going places.</p>
+    </section>
+
+    <section class="about-stats">
+      <div><strong>40k+</strong><span>bags out in the wild</span></div>
+      <div><strong>4.9★</strong><span>average review</span></div>
+      <div><strong>∞</strong><span>lifetime zipper warranty</span></div>
+      <div><strong>7-day</strong><span>easy returns</span></div>
+    </section>
+
+    <section class="about-values">
+      <div class="about-values__head">
+        <h2 class="section-title">WHAT WE STAND FOR</h2>
+        <p class="section-sub">Three promises in every Habäne carry.</p>
       </div>
-
-      <div class="showroom__stage" id="showroomStage">
-        <model-viewer id="viewer" alt="Habäne luggage — interactive 3D model"
-          camera-controls auto-rotate auto-rotate-delay="0" rotation-per-second="20deg"
-          interaction-prompt="auto" shadow-intensity="1.1" shadow-softness="0.9" exposure="1.15"
-          environment-image="neutral" camera-orbit="35deg 75deg 110%" loading="eager"
-          min-camera-orbit="auto auto 60%" max-camera-orbit="auto auto 160%" touch-action="pan-y">
-          <div class="showroom__loader" slot="poster">
-            <span class="showroom__spinner"></span>
-            <span>loading 3D…</span>
-          </div>
-        </model-viewer>
-        <div class="showroom__tools">
-          <button id="spinToggle" class="tool is-active" type="button"><i data-lucide="rotate-cw"></i> Auto-spin</button>
-          <button id="resetView" class="tool" type="button"><i data-lucide="maximize"></i> Reset view</button>
-        </div>
+      <div class="about-values__grid">
+        <article class="about-value">
+          <div class="about-value__icon"><i data-lucide="gem"></i></div>
+          <h3>Premium materials</h3>
+          <p>Metallic silver hardware, water-repellent tech canvas and leather-trim detailing. Built to look as good on year five as on day one.</p>
+        </article>
+        <article class="about-value">
+          <div class="about-value__icon"><i data-lucide="cpu"></i></div>
+          <h3>Smart by design</h3>
+          <p>Integrated charging, biometric locks and modular organization — engineered in, never bolted on. Technology that earns its place.</p>
+        </article>
+        <article class="about-value">
+          <div class="about-value__icon"><i data-lucide="infinity"></i></div>
+          <h3>Built to last</h3>
+          <p>Reinforced stitching and a lifetime zipper warranty. We'd rather you buy one Habäne than five of something else.</p>
+        </article>
       </div>
+    </section>
 
-      <div class="showroom__pick" id="modelPick">
-        <button class="model-pick is-active" data-model="carryon" type="button">
-          <span class="model-pick__name">Carry-On</span><span class="model-pick__meta">Cabin · 38L</span>
-        </button>
-        <button class="model-pick" data-model="voyager" type="button">
-          <span class="model-pick__name">Voyager Case</span><span class="model-pick__meta">Check-in · 65L</span>
-        </button>
-        <button class="model-pick" data-model="cabin" type="button">
-          <span class="model-pick__name">Cabin Trunk</span><span class="model-pick__meta">Hard-shell · 45L</span>
-        </button>
+    <section class="about-material">
+      <div class="about-material__media">
+        <img src="assets/products/p2-navy-metropolitan-duffel.jpg" alt="Habäne in midnight navy and metallic silver">
       </div>
-
-      <button type="button" class="showroom__photos-link" id="showPhotos">Can't see the 3D model? View the product gallery instead</button>
-
-      <!-- Static fallback gallery (also auto-shown if WebGL/3D is unavailable) -->
-      <div class="showroom__fallback" id="showroomFallback" hidden>
-        <p class="showroom__fallback-note"><i data-lucide="image"></i> <span id="fallbackNote">Browse every Habäne carry below.</span></p>
-        <div class="grid" id="showroomGrid"></div>
-        <div class="featured__more"><a href="shop.html" class="view-more">View All Products <i data-lucide="arrow-right"></i></a></div>
+      <div class="about-material__copy">
+        <p class="hero__eyebrow">THE SIGNATURE</p>
+        <h2 class="about-material__title">Midnight navy.<br>Metallic silver.</h2>
+        <p>Our colourway isn't a trend — it's the house signature. Deep navy that hides the wear of real travel, paired with metallic silver hardware that catches the light at every gate, platform and lobby.</p>
+        <a href="shop.html" class="tech-cta">SHOP THE COLLECTION</a>
       </div>
+    </section>
 
-      <p class="showroom__credit">3D models via <a href="https://poly.pizza" target="_blank" rel="noopener">Poly Pizza</a> — CC-BY.</p>
+    <section class="about-cta">
+      <h2>Ready to carry the city?</h2>
+      <p>Explore the full range or talk to us — we're here.</p>
+      <div class="about-cta__btns">
+        <a href="shop.html" class="tech-cta">SHOP ALL PRODUCTS</a>
+        <a href="contact.html" class="ghost-btn"><span>Contact Us</span><i data-lucide="arrow-right"></i></a>
+      </div>
     </section>
   </main>
 
-  <footer class="foot">
-    <div class="foot__bottom" style="border:none;max-width:1280px;margin:0 auto">
-      <p>© <span id="yr"></span> Habäne. All rights reserved.</p>
-      <a href="index.html" class="foot__vibe">Back to home</a>
-    </div>
-  </footer>
+  <footer class="foot"></footer>
 
   <div class="search-pop" id="searchPop" aria-hidden="true">
     <div class="search-pop__inner">
@@ -136,11 +141,9 @@
   </div>
   <div class="toast" id="toast"></div>
 
-  <script type="module" src="https://cdn.jsdelivr.net/npm/@google/model-viewer@3.5.0/dist/model-viewer.min.js"></script>
-  <script src="assets/3d/models.js"></script>
   <script src="js/data.js"></script>
   <script src="js/store.js"></script>
   <script src="js/components.js"></script>
-  <script src="js/showroom.js"></script>
+  <script src="js/about.js"></script>
 </body>
 </html>
