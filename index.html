@@ -100,10 +100,12 @@
           </div>
         </div>
         <div class="hero__logo3d-wrap">
-          <div class="logo3d" id="logo3d" title="Drag to spin" role="img" aria-label="Habäne logo">
-            <div class="logo3d__face logo3d__face--front"></div>
-            <div class="logo3d__face logo3d__face--back"></div>
-          </div>
+          <model-viewer id="heroLogo" class="hero-logo3d"
+            src="assets/3d/logo.glb" alt="Habäne 3D logo — drag to rotate"
+            camera-controls auto-rotate auto-rotate-delay="0" rotation-per-second="22deg"
+            interaction-prompt="none" exposure="1.15" shadow-intensity="0.85" shadow-softness="1"
+            environment-image="neutral" camera-orbit="20deg 78deg 110%" disable-zoom
+            touch-action="pan-y" poster="assets/brand/logo-emblem-navy.png"></model-viewer>
         </div>
       </div>
     </section>
@@ -278,6 +280,7 @@
 
   <div class="toast" id="toast"></div>
 
+  <script type="module" src="https://cdn.jsdelivr.net/npm/@google/model-viewer@3.5.0/dist/model-viewer.min.js"></script>
   <script src="js/data.js"></script>
   <script src="js/store.js"></script>
   <script src="js/components.js"></script>

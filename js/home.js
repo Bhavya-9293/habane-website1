@@ -99,50 +99,10 @@
     });
   }
 
-  /* Rotating Habäne logo medallion — auto-spins, drag to control */
-  function initLogo3d() {
-    const el = document.getElementById('logo3d');
-    if (!el) return;
-    let rot = -18;          // current Y rotation (deg)
-    let vel = 0.35;         // auto-spin speed (deg/frame)
-    let dragging = false;
-    let lastX = 0;
-    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-    function apply() { el.style.transform = `rotateX(-8deg) rotateY(${rot}deg)`; }
-
-    function frame() {
-      if (!dragging && !reduce) rot += vel;
-      apply();
-      requestAnimationFrame(frame);
-    }
-
-    el.addEventListener('pointerdown', e => {
-      dragging = true; lastX = e.clientX;
-      el.setPointerCapture(e.pointerId);
-      el.classList.add('is-grabbing');
-    });
-    el.addEventListener('pointermove', e => {
-      if (!dragging) return;
-      const dx = e.clientX - lastX;
-      lastX = e.clientX;
-      rot += dx * 0.6;
-      vel = Math.max(-2, Math.min(2, dx * 0.15)) || vel;
-      apply();
-    });
-    const release = () => { dragging = false; el.classList.remove('is-grabbing'); if (Math.abs(vel) < 0.1) vel = 0.35; };
-    el.addEventListener('pointerup', release);
-    el.addEventListener('pointercancel', release);
-
-    apply();
-    requestAnimationFrame(frame);
-  }
-
   document.addEventListener('DOMContentLoaded', () => {
     if (window.gsap && window.ScrollTrigger) gsap.registerPlugin(ScrollTrigger);
     H.initShared();
 
-    initLogo3d();
     initFeatured();
     initSmartSplit();
     initFaqCarousel();

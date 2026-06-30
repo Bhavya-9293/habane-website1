@@ -1051,21 +1051,14 @@ model-viewer#viewer{
   position:relative; display:flex; justify-content:center; align-items:center;
   min-height:400px; width:100%; perspective:1100px;
 }
-.logo3d{
-  position:relative; width:clamp(240px,30vw,380px); aspect-ratio:1/1;
-  transform-style:preserve-3d; cursor:grab; z-index:2; touch-action:none;
-  will-change:transform;
+/* hero 3D logo (real GLB, drag to rotate) — no background */
+.hero-logo3d{
+  width:100%; height:clamp(320px,40vw,460px); max-width:520px;
+  background:transparent; --poster-color:transparent; outline:none; z-index:2;
+  cursor:grab;
 }
-.logo3d.is-grabbing{ cursor:grabbing }
-/* just the logo (no background) — navy silhouette via mask, two faces to flip */
-.logo3d__face{
-  position:absolute; inset:0; backface-visibility:hidden;
-  background:linear-gradient(135deg, #1b2a72 0%, var(--navy) 48%, var(--navy-deep) 100%);
-  -webkit-mask:url("assets/brand/logo-white.png") center/contain no-repeat;
-          mask:url("assets/brand/logo-white.png") center/contain no-repeat;
-  filter:drop-shadow(0 12px 22px rgba(11,18,64,.28));
-}
-.logo3d__face--back{ transform:rotateY(180deg) }
+.hero-logo3d:active{ cursor:grabbing }
+.hero-logo3d::part(default-progress-bar){ display:none }
 
 
 /* ---- 3D bag model ---- */
