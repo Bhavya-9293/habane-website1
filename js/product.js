@@ -73,15 +73,23 @@
   }
 
   function renderRelated(p) {
-    const wrap = document.getElementById('relatedGrid');
-    if (!wrap) return;
+    const track = document.getElementById('relatedGrid');
+    if (!track) return;
     const same = H.PRODUCTS.filter(x => x.id !== p.id && x.cat === p.cat);
     const others = H.PRODUCTS.filter(x => x.id !== p.id && x.cat !== p.cat);
-    const rel = [...same, ...others].slice(0, 4);
-    wrap.innerHTML = rel.map(x => H.cardHTML(x)).join('');
-    H.bindGrid(wrap);
+    const rel = [...same, ...others].slice(0, 10);
+    track.innerHTML = rel.map(x => H.cardHTML(x)).join('');
+    H.bindGrid(track);
     H.observeCards();
-    H.refreshIcons(wrap);
+    H.refreshIcons(track);
+
+    const step = () => {
+      const card = track.querySelector('.card');
+      const w = card ? card.getBoundingClientRect().width + 20 : 320;
+      return Math.max(w, Math.round(track.clientWidth * 0.8));
+    };
+    document.getElementById('relPrev')?.addEventListener('click', () => track.scrollBy({ left: -step(), behavior: 'smooth' }));
+    document.getElementById('relNext')?.addEventListener('click', () => track.scrollBy({ left: step(), behavior: 'smooth' }));
   }
 
   document.addEventListener('DOMContentLoaded', () => {

@@ -100,12 +100,19 @@
       </div>
     </div>
 
-    <section class="recommend" id="pdRelated">
-      <div class="recommend__head">
-        <h2 class="section-title">YOU MAY ALSO LIKE</h2>
-        <p class="section-sub">Carries that pair well with this one.</p>
+    <section class="featured featured--carousel recommend" id="pdRelated">
+      <div class="featured__head featured__head--row">
+        <div class="featured__head-left">
+          <h2 class="section-title">YOU MAY ALSO LIKE</h2>
+          <p class="section-sub">Carries that pair well with this one.</p>
+        </div>
+        <a href="shop.html" class="explore-all">Explore All Products <i data-lucide="arrow-right"></i></a>
       </div>
-      <div class="grid grid--featured" id="relatedGrid"></div>
+      <div class="featured__carousel-wrap">
+        <button type="button" class="carousel-btn carousel-btn--prev" id="relPrev" aria-label="Previous"><i data-lucide="chevron-left"></i></button>
+        <div class="featured__track" id="relatedGrid"></div>
+        <button type="button" class="carousel-btn carousel-btn--next" id="relNext" aria-label="Next"><i data-lucide="chevron-right"></i></button>
+      </div>
     </section>
   </main>
 

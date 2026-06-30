@@ -51,10 +51,6 @@
           <span class="faq-card__tag">${item.tag}</span>
           <h3 class="faq-card__q">"${item.q.toUpperCase()}"</h3>
           <p class="faq-card__a">${item.a}</p>
-          <div class="faq-card__nav">
-            <button type="button" class="faq-card__arrow" data-faq-prev aria-label="Previous">${H.icon('chevron-left')}</button>
-            <button type="button" class="faq-card__arrow" data-faq-next aria-label="Next">${H.icon('chevron-right')}</button>
-          </div>
         </div>
       </article>`).join('');
 
