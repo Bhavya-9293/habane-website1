@@ -3,15 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Smart Series — HABÄNE</title>
-  <meta name="description" content="The Habäne Smart Series — integrated charging, biometric security and modular organization. Shop the smartest bags you'll ever carry." />
+  <title>3D Showroom — HABÄNE</title>
+  <meta name="description" content="Spin, zoom and inspect Habäne luggage in interactive 3D — or browse the full product gallery." />
   <link rel="icon" href="assets/brand/logo-white.png" />
   <link rel="stylesheet" href="styles.css" />
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" defer></script>
   <script src="https://unpkg.com/lucide@0.469.0/dist/umd/lucide.min.js" defer></script>
 </head>
-<body data-page="smart-series">
+<body data-page="showroom">
 
   <header class="nav nav--solid" id="nav">
     <button class="nav__burger" id="burger" type="button" aria-label="Menu"><span></span><span></span><span></span></button>
@@ -53,84 +51,54 @@
   </div>
 
   <main>
-    <!-- HERO -->
-    <section class="ss-hero2">
-      <div class="ss-hero2__copy">
-        <p class="hero__eyebrow">THE SMART SERIES</p>
-        <h1 class="ss-hero2__title">Your bag, but it <em>thinks.</em></h1>
-        <p>Integrated power, biometric security and modular organization — engineered into carry you can trust. Charge your devices, lock your valuables and track every trip.</p>
-        <div class="ss-hero2__cta">
-          <a href="#ss-shop" class="tech-cta">SHOP SMART SERIES</a>
-          <a href="#ss-features" class="ghost-btn"><span>See all 12 features</span><i data-lucide="arrow-down"></i></a>
-        </div>
-        <div class="ss-hero2__mini">
-          <span><i data-lucide="battery-charging"></i> 10,000mAh core</span>
-          <span><i data-lucide="fingerprint"></i> Biometric lock</span>
-          <span><i data-lucide="map-pin"></i> GPS-ready</span>
-        </div>
+    <section class="showroom" id="showroom">
+      <div class="showroom__head">
+        <p class="hero__eyebrow">3D SHOWROOM</p>
+        <h2 class="section-title">SPIN IT. INSPECT IT.</h2>
+        <p class="section-sub">Drag to rotate · scroll to zoom · double-tap to recenter.</p>
       </div>
-      <div class="ss-hero2__media">
-        <img src="assets/products/p4-smart-duffel-ivory.jpg" alt="Habäne Smart Duffel">
-        <span class="smart__tag">⚡ FAST CHARGE</span>
-      </div>
-    </section>
 
-    <!-- BUYABLE PRODUCTS -->
-    <section class="ss-shop" id="ss-shop">
-      <div class="ss-features__head">
-        <h2 class="section-title">SHOP THE SMART SERIES</h2>
-        <p class="section-sub">The smartest bags you'll ever carry — ready to ship.</p>
-      </div>
-      <div class="grid grid--featured" id="ssProducts"></div>
-    </section>
-
-    <!-- KEY BENEFITS -->
-    <section class="ss-benefits">
-      <article class="ss-benefit">
-        <div class="ss-benefit__icon"><i data-lucide="battery-charging"></i></div>
-        <h3>Charge anywhere</h3>
-        <p>USB-A and USB-C pass-through with a padded 10,000mAh power-bank slot. Top up your phone while you walk to the gate.</p>
-      </article>
-      <article class="ss-benefit">
-        <div class="ss-benefit__icon"><i data-lucide="fingerprint"></i></div>
-        <h3>Lock it down</h3>
-        <p>Biometric fingerprint access unlocks the main compartment in under 0.3s. TSA combo lock and slash-resistant panels keep the rest safe.</p>
-      </article>
-      <article class="ss-benefit">
-        <div class="ss-benefit__icon"><i data-lucide="map-pin"></i></div>
-        <h3>Never lose it</h3>
-        <p>A discreet tracker pocket fits AirTag or Tile, so your bag is always on the map — checked-in or carried on.</p>
-      </article>
-    </section>
-
-    <!-- ALL 12 FEATURES — compact, scannable -->
-    <section class="ss-features" id="ss-features">
-      <div class="ss-features__head">
-        <h2 class="section-title">EVERY SMART BAG INCLUDES</h2>
-        <p class="section-sub">Twelve innovations. One seamless experience. Tap any to learn more.</p>
-      </div>
-      <div class="ss-feat-chips" id="featGrid"></div>
-      <div class="ss-features__cta">
-        <div class="tech-cta-wrap">
-          <div class="tech-cta-pulse"></div>
-          <div class="tech-cta-pulse2"></div>
-          <a href="shop.html?cat=smart" class="tech-cta">SHOP SMART SERIES</a>
+      <div class="showroom__stage" id="showroomStage">
+        <model-viewer id="viewer" alt="Habäne luggage — interactive 3D model"
+          camera-controls auto-rotate auto-rotate-delay="0" rotation-per-second="20deg"
+          interaction-prompt="auto" shadow-intensity="1.1" shadow-softness="0.9" exposure="1.15"
+          environment-image="neutral" camera-orbit="35deg 75deg 110%" loading="eager"
+          min-camera-orbit="auto auto 60%" max-camera-orbit="auto auto 160%" touch-action="pan-y">
+          <div class="showroom__loader" slot="poster">
+            <span class="showroom__spinner"></span>
+            <span>loading 3D…</span>
+          </div>
+        </model-viewer>
+        <div class="showroom__tools">
+          <button id="spinToggle" class="tool is-active" type="button"><i data-lucide="rotate-cw"></i> Auto-spin</button>
+          <button id="resetView" class="tool" type="button"><i data-lucide="maximize"></i> Reset view</button>
         </div>
       </div>
-    </section>
 
-    <!-- SOCIAL PROOF -->
-    <section class="ss-proof">
-      <div class="ss-proof__inner">
-        <div><strong>4.9★</strong><span>2,400+ verified reviews</span></div>
-        <div><strong>0.3s</strong><span>biometric unlock</span></div>
-        <div><strong>∞</strong><span>lifetime zipper warranty</span></div>
-        <div><strong>7-day</strong><span>easy returns</span></div>
+      <div class="showroom__pick" id="modelPick">
+        <button class="model-pick is-active" data-model="carryon" type="button">
+          <span class="model-pick__name">Carry-On</span><span class="model-pick__meta">Cabin · 38L</span>
+        </button>
+        <button class="model-pick" data-model="voyager" type="button">
+          <span class="model-pick__name">Voyager Case</span><span class="model-pick__meta">Check-in · 65L</span>
+        </button>
+        <button class="model-pick" data-model="cabin" type="button">
+          <span class="model-pick__name">Cabin Trunk</span><span class="model-pick__meta">Hard-shell · 45L</span>
+        </button>
       </div>
+
+      <button type="button" class="showroom__photos-link" id="showPhotos">Can't see the 3D model? View the product gallery instead</button>
+
+      <!-- Static fallback gallery (also auto-shown if WebGL/3D is unavailable) -->
+      <div class="showroom__fallback" id="showroomFallback" hidden>
+        <p class="showroom__fallback-note"><i data-lucide="image"></i> <span id="fallbackNote">Browse every Habäne carry below.</span></p>
+        <div class="grid" id="showroomGrid"></div>
+        <div class="featured__more"><a href="shop.html" class="view-more">View All Products <i data-lucide="arrow-right"></i></a></div>
+      </div>
+
+      <p class="showroom__credit">3D models via <a href="https://poly.pizza" target="_blank" rel="noopener">Poly Pizza</a> — CC-BY.</p>
     </section>
   </main>
-
-  <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><path id="circlePath" d="M 50,50 m -37,0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0" /></defs></svg>
 
   <footer class="foot">
     <div class="foot__bottom" style="border:none;max-width:1280px;margin:0 auto">
@@ -167,9 +135,11 @@
   </div>
   <div class="toast" id="toast"></div>
 
+  <script type="module" src="https://cdn.jsdelivr.net/npm/@google/model-viewer@3.5.0/dist/model-viewer.min.js"></script>
+  <script src="assets/3d/models.js"></script>
   <script src="js/data.js"></script>
   <script src="js/store.js"></script>
   <script src="js/components.js"></script>
-  <script src="js/smart-series.js"></script>
+  <script src="js/showroom.js"></script>
 </body>
 </html>

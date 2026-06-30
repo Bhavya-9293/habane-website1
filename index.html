@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>HABÄNE — Carry the City</title>
-  <meta name="description" content="Habäne — premium smart duffels, weekenders & backpacks. Engineered to carry your whole world, skyline and all." />
+  <meta name="description" content="Habäne — premium duffels, weekenders & backpacks. Engineered to travel as far as you do." />
   <link rel="icon" href="assets/brand/logo-white.png" />
   <link rel="stylesheet" href="styles.css" />
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
@@ -26,9 +26,10 @@
 
     <nav class="nav__links nav__links--left">
       <a href="index.html">Home</a>
+      <a href="shop.html" class="nav__shop">Shop All</a>
       <a href="smart-series.html">Smart Series</a>
-      <a href="#showroom">3D Showroom</a>
-      <a href="#contact">Contact</a>
+      <a href="contact.html">Contact</a>
+      <a href="showroom.html" class="nav__cta">3D Showroom</a>
     </nav>
 
     <a class="nav__logo" href="index.html">
@@ -36,6 +37,13 @@
     </a>
 
     <nav class="nav__links nav__links--right">
+      <div class="loc-select" id="locSelect">
+        <button type="button" class="loc-select__btn" aria-label="Select region"></button>
+        <div class="loc-select__panel">
+          <input type="text" class="loc-select__search" placeholder="Search country…" autocomplete="off">
+          <div class="loc-select__list"></div>
+        </div>
+      </div>
       <button class="nav__icon nav__iconbtn" id="searchBtn" type="button" aria-label="Search"><i data-lucide="search"></i></button>
       <button class="nav__icon nav__iconbtn nav__wish" id="wishBtn" type="button" aria-label="Wishlist">
         <i data-lucide="heart"></i><em id="wishCount" hidden>0</em>
@@ -54,18 +62,15 @@
   </header>
 
   <div class="ribbon" aria-hidden="true">
-    <div class="ribbon__track">
-      <span>FREE SHIPPING ON EVERYTHING · SMART DUFFELS — NOW LIVE · CARRY THE CITY · LIFETIME ZIPPER WARRANTY · NEW DROP: METROPOLITAN SERIES · </span>
-      <span>FREE SHIPPING ON EVERYTHING · SMART DUFFELS — NOW LIVE · CARRY THE CITY · LIFETIME ZIPPER WARRANTY · NEW DROP: METROPOLITAN SERIES · </span>
-    </div>
+    <div class="ribbon__track"></div>
   </div>
 
   <div class="drawer" id="drawer">
     <a href="index.html">Home</a>
-    <a href="smart-series.html">Smart Series</a>
-    <a href="#showroom">3D Showroom</a>
-    <a href="#contact">Contact</a>
     <a href="shop.html">Shop All</a>
+    <a href="smart-series.html">Smart Series</a>
+    <a href="showroom.html">3D Showroom</a>
+    <a href="contact.html">Contact</a>
     <a href="#" class="drawer__cart" id="drawerCartLink">Cart (<span class="drawer-cart-count">0</span>)</a>
   </div>
 
@@ -77,34 +82,29 @@
         <div class="hero__inner">
           <p class="hero__eyebrow">EST. — CARRY THE CITY</p>
           <h1 class="hero__title">
-            <span>THE ULTIMATE</span>
-            <span class="hero__title--metal">TECH TRAVEL BAG.</span>
+            <span>BUILT FOR</span>
+            <span class="hero__title--metal">THE LONG WAY ROUND.</span>
           </h1>
-          <p class="hero__sub">Smart duffels, weekenders &amp; backpacks engineered for modern travel. Built-in USB charging ports, biometric fingerprint locks, and premium structured organization for all your tech gear.</p>
+          <p class="hero__sub">Premium duffels, weekenders &amp; backpacks — structured silhouettes, aircraft-grade hardware and lifetime zippers. Engineered to travel as far as you do.</p>
           <div class="hero__cta">
             <div class="tech-cta-wrap">
               <div class="tech-cta-pulse"></div>
               <div class="tech-cta-pulse2"></div>
               <a href="shop.html" class="tech-cta" id="heroBagCta">SHOP NOW</a>
             </div>
-            <a href="smart-series.html" class="ghost-btn">
-              <span>Meet the Smart Duffel</span>
+            <a href="showroom.html" class="ghost-btn">
+              <span>Explore in 3D</span>
               <i data-lucide="arrow-right"></i>
             </a>
           </div>
         </div>
         <div class="hero__bag-3d-wrap">
-          <model-viewer id="heroViewer" alt="Habäne Tech Travel Bag — interactive 3D model"
+          <model-viewer id="heroViewer" alt="Habäne Travel Bag — interactive 3D model"
             camera-controls auto-rotate auto-rotate-delay="0" rotation-per-second="15deg"
             interaction-prompt="none" shadow-intensity="1.2" shadow-softness="0.8" exposure="1.1"
             environment-image="neutral" camera-orbit="45deg 75deg 110%" disable-zoom touch-action="none">
           </model-viewer>
           <div class="hero__bag-glow"></div>
-        </div>
-      </div>
-      <div class="hero__marquee" aria-hidden="true">
-        <div class="hero__marquee-track">
-          <span>HABÄNE</span><span class="hollow">HABÄNE</span><span>HABÄNE</span><span class="hollow">HABÄNE</span><span>HABÄNE</span><span class="hollow">HABÄNE</span>
         </div>
       </div>
     </section>
@@ -116,66 +116,14 @@
       </div>
       <div class="grid grid--featured" id="grid"></div>
       <div class="featured__more">
-        <a href="shop.html" class="view-more">View More <i data-lucide="arrow-right"></i></a>
+        <a href="shop.html" class="view-more">View All Products <i data-lucide="arrow-right"></i></a>
       </div>
     </section>
 
-    <section class="smart-split" id="smart">
-      <a href="smart-series.html" class="smart-split__panel smart-split__panel--a">
-        <img src="assets/products/p4-smart-duffel-ivory.jpg" alt="Smart Duffel Ivory">
-        <div class="smart-split__overlay">
-          <h2 class="smart-split__title"><span>SMART</span><span>IVORY</span></h2>
-        </div>
-      </a>
-      <a href="smart-series.html" class="smart-split__panel smart-split__panel--b">
-        <img src="assets/products/p3-navy-voyager-duffel.jpg" alt="Voyager Smart Edition">
-        <div class="smart-split__overlay">
-          <h2 class="smart-split__title"><span>VOYAGER</span><span>NEEL</span></h2>
-        </div>
-      </a>
-      <a href="smart-series.html" class="smart-split__explore">Explore</a>
-    </section>
-
-    <section class="showroom" id="showroom">
-      <div class="showroom__head">
-        <p class="hero__eyebrow">3D SHOWROOM</p>
-        <h2 class="section-title">SPIN IT. INSPECT IT.</h2>
-        <p class="section-sub">Drag to rotate · scroll to zoom · double-tap to recenter.</p>
-      </div>
-      <div class="showroom__stage">
-        <model-viewer id="viewer" alt="Habäne luggage — interactive 3D model"
-          camera-controls auto-rotate auto-rotate-delay="0" rotation-per-second="20deg"
-          interaction-prompt="auto" shadow-intensity="1.1" shadow-softness="0.9" exposure="1.15"
-          environment-image="neutral" camera-orbit="35deg 75deg 110%"
-          min-camera-orbit="auto auto 60%" max-camera-orbit="auto auto 160%" touch-action="pan-y">
-          <div class="showroom__loader" slot="poster">
-            <span class="showroom__spinner"></span>
-            <span>loading 3D…</span>
-          </div>
-        </model-viewer>
-        <div class="showroom__tools">
-          <button id="spinToggle" class="tool is-active" type="button"><i data-lucide="rotate-cw"></i> Auto-spin</button>
-          <button id="resetView" class="tool" type="button"><i data-lucide="maximize"></i> Reset view</button>
-        </div>
-      </div>
-      <div class="showroom__pick" id="modelPick">
-        <button class="model-pick is-active" data-model="carryon" type="button">
-          <span class="model-pick__name">Carry-On</span><span class="model-pick__meta">Cabin · 38L</span>
-        </button>
-        <button class="model-pick" data-model="voyager" type="button">
-          <span class="model-pick__name">Voyager Case</span><span class="model-pick__meta">Check-in · 65L</span>
-        </button>
-        <button class="model-pick" data-model="cabin" type="button">
-          <span class="model-pick__name">Cabin Trunk</span><span class="model-pick__meta">Hard-shell · 45L</span>
-        </button>
-      </div>
-      <p class="showroom__credit">3D models via <a href="https://poly.pizza" target="_blank" rel="noopener">Poly Pizza</a> — CC-BY.</p>
-    </section>
-
-    <div class="strip" aria-hidden="true">
-      <div class="strip__track">
-        <span>CARRY THE CITY · MIDNIGHT NAVY · METALLIC SILVER · SMART INSIDE · CARRY THE CITY · MIDNIGHT NAVY · METALLIC SILVER · SMART INSIDE · </span>
-        <span>CARRY THE CITY · MIDNIGHT NAVY · METALLIC SILVER · SMART INSIDE · CARRY THE CITY · MIDNIGHT NAVY · METALLIC SILVER · SMART INSIDE · </span>
+    <!-- HABÄNE scrolling band (moved here, right after Shop the Range) -->
+    <div class="brand-marquee" aria-hidden="true">
+      <div class="hero__marquee-track">
+        <span>HABÄNE</span><span class="hollow">HABÄNE</span><span>HABÄNE</span><span class="hollow">HABÄNE</span><span>HABÄNE</span><span class="hollow">HABÄNE</span>
       </div>
     </div>
 
@@ -191,6 +139,13 @@
       </div>
     </section>
 
+    <div class="strip" aria-hidden="true">
+      <div class="strip__track">
+        <span>CARRY THE CITY · MIDNIGHT NAVY · METALLIC SILVER · SMART INSIDE · CARRY THE CITY · MIDNIGHT NAVY · METALLIC SILVER · SMART INSIDE · </span>
+        <span>CARRY THE CITY · MIDNIGHT NAVY · METALLIC SILVER · SMART INSIDE · CARRY THE CITY · MIDNIGHT NAVY · METALLIC SILVER · SMART INSIDE · </span>
+      </div>
+    </div>
+
     <section class="faq-carousel" id="faq">
       <div class="faq-carousel__head">
         <h2 class="section-title">WHAT THEY'RE ASKING</h2>
@@ -202,31 +157,6 @@
       </div>
       <div class="faq-carousel__viewport">
         <div class="faq-carousel__track" id="faqTrack"></div>
-      </div>
-    </section>
-
-    <section class="contact" id="contact">
-      <div class="contact__inner">
-        <p class="hero__eyebrow">CONTACT</p>
-        <h2 class="section-title">LET'S TALK CARRY</h2>
-        <p class="section-sub">Orders, partnerships, or just saying hi — we're here.</p>
-        <div class="contact__grid">
-          <a href="mailto:hello@habane.com" class="contact__card">
-            <i data-lucide="mail"></i>
-            <strong>hello@habane.com</strong>
-            <span>We reply within 24 hours</span>
-          </a>
-          <a href="tel:+919876543210" class="contact__card">
-            <i data-lucide="phone"></i>
-            <strong>+91 98765 43210</strong>
-            <span>Mon–Sat, 10am–7pm IST</span>
-          </a>
-          <div class="contact__card">
-            <i data-lucide="map-pin"></i>
-            <strong>Mumbai, India</strong>
-            <span>By appointment only</span>
-          </div>
-        </div>
       </div>
     </section>
 
@@ -267,8 +197,8 @@
       <div class="foot__col">
         <h4>Company</h4>
         <a href="#story">Our Story</a>
-        <a href="#contact">Contact</a>
-        <a href="#showroom">3D Showroom</a>
+        <a href="contact.html">Contact</a>
+        <a href="showroom.html">3D Showroom</a>
         <a href="#">Gift Cards</a>
       </div>
       <div class="foot__col">
@@ -339,14 +269,6 @@
       <p id="doneMsg"></p>
       <p class="done__order">Order <strong id="doneOrder"></strong></p>
       <button class="done__btn" data-done-close type="button">KEEP SHOPPING</button>
-    </div>
-  </div>
-
-  <div class="loc-select" id="locSelect">
-    <button type="button" class="loc-select__btn" aria-label="Select region"></button>
-    <div class="loc-select__panel">
-      <input type="text" class="loc-select__search" placeholder="Search country…" autocomplete="off">
-      <div class="loc-select__list"></div>
     </div>
   </div>
 

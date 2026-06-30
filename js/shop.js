@@ -8,11 +8,15 @@
   let priceMax = 20000;
   let searchQ = '';
   let layout = 'grid';
+  let currentColor = 'all';
 
   function visibleProducts() {
     let list = [...H.PRODUCTS];
     if (currentFilter !== 'all') list = list.filter(p => p.cat === currentFilter);
     list = list.filter(p => p.price >= priceMin && p.price <= priceMax);
+    if (currentColor !== 'all') {
+      list = list.filter(p => (p.colors || []).some(c => c.name === currentColor));
+    }
     if (searchQ) {
       const q = searchQ.toLowerCase();
       list = list.filter(p => (p.name + ' ' + p.catLabel + ' ' + p.desc).toLowerCase().includes(q));
@@ -73,8 +77,28 @@
     if (descEl) descEl.textContent = info.desc;
   }
 
+  function buildColorFilter() {
+    const wrap = document.getElementById('colorFilters');
+    if (!wrap) return;
+    const seen = new Map();
+    H.PRODUCTS.forEach(p => (p.colors || []).forEach(c => { if (!seen.has(c.name)) seen.set(c.name, c.hex); }));
+    wrap.innerHTML =
+      `<button class="color-swatch is-active" data-color="all" type="button" title="All colours"><span class="color-swatch__all">All</span></button>` +
+      [...seen.entries()].map(([name, hex]) =>
+        `<button class="color-swatch" data-color="${name}" type="button" title="${name}"><span style="background:${hex}"></span></button>`).join('');
+    wrap.addEventListener('click', e => {
+      const btn = e.target.closest('.color-swatch');
+      if (!btn) return;
+      currentColor = btn.dataset.color;
+      wrap.querySelectorAll('.color-swatch').forEach(b => b.classList.remove('is-active'));
+      btn.classList.add('is-active');
+      render();
+    });
+  }
+
   document.addEventListener('DOMContentLoaded', () => {
     H.initShared();
+    buildColorFilter();
     const params = new URLSearchParams(location.search);
     if (params.get('cat')) {
       currentFilter = params.get('cat');
@@ -127,13 +151,30 @@
       render();
     });
 
-    // Filter Toggle panel
+    // Filter sidebar drawer (mobile)
     const filterToggle = document.getElementById('filterToggle');
     const filterPanel = document.getElementById('filterPanel');
     filterToggle?.addEventListener('click', e => {
       e.stopPropagation();
       filterPanel?.classList.toggle('open');
       filterToggle.classList.toggle('is-active');
+    });
+    document.getElementById('filterClose')?.addEventListener('click', () => {
+      filterPanel?.classList.remove('open');
+      filterToggle?.classList.remove('is-active');
+    });
+
+    // Clear all filters
+    document.getElementById('filterClear')?.addEventListener('click', () => {
+      currentFilter = 'all';
+      currentColor = 'all';
+      priceMax = 15000;
+      document.querySelectorAll('#shopFilters .pill').forEach(p => p.classList.toggle('is-active', p.dataset.filter === 'all'));
+      document.querySelectorAll('#colorFilters .color-swatch').forEach(b => b.classList.toggle('is-active', b.dataset.color === 'all'));
+      if (priceRange) priceRange.value = 15000;
+      if (priceLabel) priceLabel.textContent = `Up to ${H.inr(15000)}`;
+      updateHeader();
+      render();
     });
 
     // Click outside to close sort dropdown

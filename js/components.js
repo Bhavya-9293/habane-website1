@@ -422,6 +422,53 @@
     $$('.card').forEach(c => io.observe(c));
   };
 
+  /* ---- Ribbon / marquee (seamless, gap-proof) ---- */
+  const RIBBON_PHRASE = 'FREE SHIPPING OVER ₹4,999  ·  LIFETIME ZIPPER WARRANTY  ·  7-DAY EASY RETURNS  ·  COD AVAILABLE NATIONWIDE  ·  CARRY THE CITY  ·  ';
+  function fillRibbon(track) {
+    const phrase = track.dataset.phrase || RIBBON_PHRASE;
+    const span = document.createElement('span');
+    track.innerHTML = '';
+    track.appendChild(span);
+    let txt = phrase;
+    span.textContent = txt;
+    let guard = 0;
+    // repeat until one copy is wider than the viewport → -50% loop never shows a gap
+    while (span.offsetWidth < window.innerWidth + 200 && guard < 30) {
+      txt += phrase;
+      span.textContent = txt;
+      guard++;
+    }
+    track.appendChild(span.cloneNode(true));
+  }
+  function initRibbon() {
+    const tracks = $$('.ribbon__track');
+    if (!tracks.length) return;
+    tracks.forEach(fillRibbon);
+    let rt;
+    addEventListener('resize', () => {
+      clearTimeout(rt);
+      rt = setTimeout(() => tracks.forEach(fillRibbon), 200);
+    });
+  }
+
+  /* ---- Footer trust bar (rayred-style, site-wide) ---- */
+  function initFooterTrust() {
+    const foot = document.querySelector('.foot');
+    if (!foot || foot.querySelector('.foot__trust')) return;
+    const items = [
+      ['truck', 'Free shipping over ₹4,999'],
+      ['banknote', 'COD available nationwide'],
+      ['rotate-ccw', '7-day easy returns'],
+      ['infinity', 'Lifetime zipper warranty'],
+    ];
+    const bar = document.createElement('div');
+    bar.className = 'foot__trust';
+    bar.innerHTML = items.map(([ic, txt]) =>
+      `<span class="foot__trust-item">${icon(ic)} ${txt}</span>`).join('');
+    foot.insertBefore(bar, foot.firstChild);
+    refreshIcons(bar);
+  }
+
   /* ---- Boot shared UI ---- */
   H.initShared = function () {
     initNav();
@@ -431,6 +478,8 @@
     initLocation();
     initSearch();
     initCart();
+    initRibbon();
+    initFooterTrust();
     const yr = $('#yr');
     if (yr) yr.textContent = new Date().getFullYear();
     refreshIcons();

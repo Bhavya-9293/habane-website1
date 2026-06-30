@@ -6,7 +6,7 @@
   function initFeatured() {
     const grid = document.getElementById('grid');
     if (!grid) return;
-    const featured = H.PRODUCTS.filter(p => p.featured).slice(0, 4);
+    const featured = H.PRODUCTS.filter(p => p.featured).slice(0, 3);
     grid.innerHTML = featured.map(p => H.cardHTML(p)).join('');
     H.bindGrid(grid);
     H.observeCards();
@@ -76,39 +76,6 @@
     H.refreshIcons(track);
   }
 
-  function initShowroom() {
-    const viewer = document.getElementById('viewer');
-    const models = window.HABANE_MODELS;
-    if (!viewer || !models) return;
-    viewer.src = models.carryon;
-
-    document.getElementById('modelPick')?.addEventListener('click', e => {
-      const btn = e.target.closest('.model-pick');
-      if (!btn) return;
-      const key = btn.dataset.model;
-      if (!models[key]) return;
-      document.querySelectorAll('.model-pick').forEach(b => b.classList.remove('is-active'));
-      btn.classList.add('is-active');
-      viewer.src = models[key];
-      viewer.cameraOrbit = '35deg 75deg 110%';
-      H.toast(`Now viewing — ${btn.querySelector('.model-pick__name').textContent}`);
-    });
-
-    const spinBtn = document.getElementById('spinToggle');
-    spinBtn?.addEventListener('click', () => {
-      const on = viewer.hasAttribute('auto-rotate');
-      if (on) viewer.removeAttribute('auto-rotate');
-      else viewer.setAttribute('auto-rotate', '');
-      spinBtn.classList.toggle('is-active', !on);
-    });
-
-    document.getElementById('resetView')?.addEventListener('click', () => {
-      viewer.cameraOrbit = '35deg 75deg 110%';
-      viewer.fieldOfView = 'auto';
-      viewer.jumpCameraToGoal?.();
-    });
-  }
-
   function initNewsletter() {
     document.getElementById('newsForm')?.addEventListener('submit', e => {
       e.preventDefault();
@@ -130,7 +97,6 @@
     initFeatured();
     initSmartSplit();
     initFaqCarousel();
-    initShowroom();
     initNewsletter();
     if (window.gsap) {
       gsap.from('.hero__inner > *', { y: 30, opacity: 0, duration: 0.8, stagger: 0.12, ease: 'power3.out', delay: 0.2 });

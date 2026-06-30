@@ -14,11 +14,21 @@
   <header class="nav nav--solid" id="nav">
     <button class="nav__burger" id="burger" type="button" aria-label="Menu"><span></span><span></span><span></span></button>
     <nav class="nav__links nav__links--left">
-      <a href="index.html">Home</a><a href="smart-series.html">Smart Series</a>
-      <a href="index.html#showroom">3D Showroom</a><a href="index.html#contact">Contact</a>
+      <a href="index.html">Home</a>
+      <a href="shop.html" class="nav__shop">Shop All</a>
+      <a href="smart-series.html">Smart Series</a>
+      <a href="contact.html">Contact</a>
+      <a href="showroom.html" class="nav__cta">3D Showroom</a>
     </nav>
     <a class="nav__logo" href="index.html"><img src="assets/brand/logo-white.png" alt="Habäne" /></a>
     <nav class="nav__links nav__links--right">
+      <div class="loc-select" id="locSelect">
+        <button type="button" class="loc-select__btn" aria-label="Select region"></button>
+        <div class="loc-select__panel">
+          <input type="text" class="loc-select__search" placeholder="Search country…" autocomplete="off">
+          <div class="loc-select__list"></div>
+        </div>
+      </div>
       <button class="nav__icon nav__iconbtn" id="searchBtn" type="button" aria-label="Search"><i data-lucide="search"></i></button>
       <button class="nav__icon nav__iconbtn nav__wish" id="wishBtn" type="button" aria-label="Wishlist"><i data-lucide="heart"></i><em id="wishCount" hidden>0</em></button>
       <div class="nav__profile"><button class="nav__icon nav__iconbtn" id="profileBtn" type="button" aria-label="Account"><i data-lucide="user"></i></button>
@@ -27,8 +37,14 @@
     </nav>
   </header>
 
+  <div class="ribbon" aria-hidden="true"><div class="ribbon__track"></div></div>
+
   <div class="drawer" id="drawer">
-    <a href="index.html">Home</a><a href="shop.html">Shop</a><a href="smart-series.html">Smart Series</a>
+    <a href="index.html">Home</a>
+    <a href="shop.html">Shop All</a>
+    <a href="smart-series.html">Smart Series</a>
+    <a href="showroom.html">3D Showroom</a>
+    <a href="contact.html">Contact</a>
     <a href="#" class="drawer__cart" id="drawerCartLink">Cart (<span class="drawer-cart-count">0</span>)</a>
   </div>
 
@@ -89,7 +105,6 @@
   <div class="search-pop" id="searchPop" aria-hidden="true"><div class="search-pop__inner"><input type="text" id="searchInput" placeholder="Search…"><button class="search-pop__close" id="searchClose" type="button"><i data-lucide="x"></i></button><div class="search-pop__results" id="searchResults"></div></div></div>
   <div class="cart" id="cart" aria-hidden="true"><div class="cart__overlay" data-cart-close></div><aside class="cart__panel"><header class="cart__head"><h3>Your Bag <span id="cartItems">(0)</span></h3><button class="cart__close" data-cart-close type="button"><i data-lucide="x"></i></button></header><div class="cart__ship"><p id="shipMsg"></p><div class="cart__bar"><span id="shipBar"></span></div></div><div class="cart__body" id="cartBody"></div><div class="cart__empty" id="cartEmpty"><div class="cart__empty-icon"><i data-lucide="luggage"></i></div><p>Empty</p></div><footer class="cart__foot" id="cartFoot"><div class="cart__row"><span>Subtotal</span><strong id="cartSubtotal">₹0</strong></div><button class="cart__checkout" id="checkoutBtn" type="button">CHECKOUT</button></footer></aside></div>
   <div class="auth-pop" id="authPop" aria-hidden="true"><div class="auth-pop__overlay" id="authCloseOverlay"></div><div class="auth-pop__panel"><button class="auth-pop__close" id="authClose" type="button"><i data-lucide="x"></i></button><h3>Welcome</h3><button type="button" class="auth-pop__btn auth-pop__btn--primary">Log In</button></div></div>
-  <div class="loc-select" id="locSelect"><button type="button" class="loc-select__btn"></button><div class="loc-select__panel"><input type="text" class="loc-select__search" placeholder="Search country…"><div class="loc-select__list"></div></div></div>
   <div class="toast" id="toast"></div>
 
   <script src="js/data.js"></script>

@@ -3,17 +3,16 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Smart Feature — HABÄNE</title>
+  <title>Contact — HABÄNE</title>
+  <meta name="description" content="Get in touch with Habäne — orders, partnerships, or just saying hi." />
   <link rel="icon" href="assets/brand/logo-white.png" />
   <link rel="stylesheet" href="styles.css" />
   <script src="https://unpkg.com/lucide@0.469.0/dist/umd/lucide.min.js" defer></script>
 </head>
-<body data-page="feature-detail">
+<body data-page="contact">
 
   <header class="nav nav--solid" id="nav">
-    <button class="nav__burger" id="burger" type="button" aria-label="Menu">
-      <span></span><span></span><span></span>
-    </button>
+    <button class="nav__burger" id="burger" type="button" aria-label="Menu"><span></span><span></span><span></span></button>
     <nav class="nav__links nav__links--left">
       <a href="index.html">Home</a>
       <a href="shop.html" class="nav__shop">Shop All</a>
@@ -21,9 +20,7 @@
       <a href="contact.html">Contact</a>
       <a href="showroom.html" class="nav__cta">3D Showroom</a>
     </nav>
-    <a class="nav__logo" href="index.html">
-      <img src="assets/brand/logo-white.png" alt="Habäne" />
-    </a>
+    <a class="nav__logo" href="index.html"><img src="assets/brand/logo-white.png" alt="Habäne" /></a>
     <nav class="nav__links nav__links--right">
       <div class="loc-select" id="locSelect">
         <button type="button" class="loc-select__btn" aria-label="Select region"></button>
@@ -33,19 +30,12 @@
         </div>
       </div>
       <button class="nav__icon nav__iconbtn" id="searchBtn" type="button" aria-label="Search"><i data-lucide="search"></i></button>
-      <button class="nav__icon nav__iconbtn nav__wish" id="wishBtn" type="button" aria-label="Wishlist">
-        <i data-lucide="heart"></i><em id="wishCount" hidden>0</em>
-      </button>
+      <button class="nav__icon nav__iconbtn nav__wish" id="wishBtn" type="button" aria-label="Wishlist"><i data-lucide="heart"></i><em id="wishCount" hidden>0</em></button>
       <div class="nav__profile">
         <button class="nav__icon nav__iconbtn" id="profileBtn" type="button" aria-label="Account"><i data-lucide="user"></i></button>
-        <div class="nav__profile-menu" id="profileMenu">
-          <button type="button" data-auth>Log In</button>
-          <button type="button" data-auth>Sign Up</button>
-        </div>
+        <div class="nav__profile-menu" id="profileMenu"><button type="button" data-auth>Log In</button><button type="button" data-auth>Sign Up</button></div>
       </div>
-      <button class="nav__icon nav__iconbtn nav__cart" id="cartBtn" type="button" aria-label="Cart">
-        <i data-lucide="shopping-bag"></i><em id="cartCount">0</em>
-      </button>
+      <button class="nav__icon nav__iconbtn nav__cart" id="cartBtn" type="button" aria-label="Cart"><i data-lucide="shopping-bag"></i><em id="cartCount">0</em></button>
     </nav>
   </header>
 
@@ -60,55 +50,52 @@
     <a href="#" class="drawer__cart" id="drawerCartLink">Cart (<span class="drawer-cart-count">0</span>)</a>
   </div>
 
-  <main class="fd-page">
-    <div class="fd-container">
-      <a href="smart-series.html" class="fd-back">
-        <i data-lucide="arrow-left"></i>
-        <span>Back to Smart Series</span>
-      </a>
+  <main>
+    <section class="contact contact--page">
+      <div class="contact__inner">
+        <p class="hero__eyebrow">CONTACT</p>
+        <h1 class="section-title">LET'S TALK CARRY</h1>
+        <p class="section-sub">Orders, partnerships, or just saying hi — we're here.</p>
 
-      <section class="fd-hero">
-        <div class="fd-hero__left">
-          <div class="fd-hero__icon-wrap" id="fdIcon">
-            <!-- Dynamic Icon -->
+        <div class="contact__grid">
+          <a href="mailto:hello@habane.com" class="contact__card">
+            <i data-lucide="mail"></i>
+            <strong>hello@habane.com</strong>
+            <span>We reply within 24 hours</span>
+          </a>
+          <a href="tel:+919876543210" class="contact__card">
+            <i data-lucide="phone"></i>
+            <strong>+91 98765 43210</strong>
+            <span>Mon–Sat, 10am–7pm IST</span>
+          </a>
+          <div class="contact__card">
+            <i data-lucide="map-pin"></i>
+            <strong>Mumbai, India</strong>
+            <span>By appointment only</span>
           </div>
-          <h1 class="fd-hero__title" id="fdTitle">Smart Feature</h1>
-          <p class="fd-hero__desc" id="fdDesc">Loading feature description...</p>
         </div>
-        <div class="fd-hero__right">
-          <div class="fd-card">
-            <h3>How It Works</h3>
-            <ol class="fd-steps" id="fdSteps">
-              <!-- Dynamic Steps -->
-            </ol>
+
+        <form class="contact-form" id="contactForm">
+          <div class="contact-form__row">
+            <label>Name<input type="text" name="name" placeholder="Your name" required></label>
+            <label>Email<input type="email" name="email" placeholder="your@email.here" required></label>
           </div>
-        </div>
-      </section>
-
-      <section class="fd-compat">
-        <h2 class="fd-section-title">Bags Containing This Feature</h2>
-        <div class="grid" id="compatibleGrid">
-          <!-- Dynamic Products -->
-        </div>
-      </section>
-
-      <section class="fd-info">
-        <div class="fd-info__card">
-          <h3>Tech Specs &amp; Reliability</h3>
-          <p id="fdTechInfo">Loading technical details...</p>
-        </div>
-      </section>
-    </div>
+          <label>Subject<input type="text" name="subject" placeholder="What's this about?"></label>
+          <label>Message<textarea name="message" rows="5" placeholder="Tell us everything…" required></textarea></label>
+          <button type="submit" class="tech-cta contact-form__submit">SEND MESSAGE</button>
+          <p class="contact-form__done" id="contactDone"></p>
+        </form>
+      </div>
+    </section>
   </main>
 
   <footer class="foot">
     <div class="foot__bottom" style="border:none;max-width:1280px;margin:0 auto">
       <p>© <span id="yr"></span> Habäne. All rights reserved.</p>
-      <a href="smart-series.html" class="foot__vibe">Back to smart series</a>
+      <a href="index.html" class="foot__vibe">Back to home</a>
     </div>
   </footer>
 
-  <!-- Overlays -->
   <div class="search-pop" id="searchPop" aria-hidden="true">
     <div class="search-pop__inner">
       <input type="text" id="searchInput" placeholder="Search bags…" autocomplete="off" />
@@ -116,21 +103,13 @@
       <div class="search-pop__results" id="searchResults"></div>
     </div>
   </div>
-
   <div class="cart" id="cart" aria-hidden="true">
     <div class="cart__overlay" data-cart-close></div>
     <aside class="cart__panel" role="dialog" aria-modal="true" aria-label="Cart">
-      <header class="cart__head">
-        <h3>Your Bag <span id="cartItems">(0)</span></h3>
-        <button class="cart__close" data-cart-close type="button" aria-label="Close"><i data-lucide="x"></i></button>
-      </header>
+      <header class="cart__head"><h3>Your Bag <span id="cartItems">(0)</span></h3><button class="cart__close" data-cart-close type="button" aria-label="Close"><i data-lucide="x"></i></button></header>
       <div class="cart__ship"><p id="shipMsg"></p><div class="cart__bar"><span id="shipBar"></span></div></div>
       <div class="cart__body" id="cartBody"></div>
-      <div class="cart__empty" id="cartEmpty">
-        <div class="cart__empty-icon"><i data-lucide="luggage"></i></div>
-        <p>Your bag is empty.</p>
-        <a href="shop.html" class="cart__empty-btn" data-cart-close>START SHOPPING</a>
-      </div>
+      <div class="cart__empty" id="cartEmpty"><div class="cart__empty-icon"><i data-lucide="luggage"></i></div><p>Your bag is empty.</p><a href="shop.html" class="cart__empty-btn" data-cart-close>START SHOPPING</a></div>
       <footer class="cart__foot" id="cartFoot">
         <div class="cart__row"><span>Subtotal</span><strong id="cartSubtotal">₹0</strong></div>
         <div class="cart__row cart__row--disc" id="cartDiscRow" hidden><span>Discount</span><strong id="cartDisc">−₹0</strong></div>
@@ -139,22 +118,15 @@
       </footer>
     </aside>
   </div>
-
   <div class="auth-pop" id="authPop" aria-hidden="true">
     <div class="auth-pop__overlay" id="authCloseOverlay"></div>
-    <div class="auth-pop__panel">
-      <button class="auth-pop__close" id="authClose" type="button" aria-label="Close"><i data-lucide="x"></i></button>
-      <h3>Welcome to Habäne</h3>
-      <button type="button" class="auth-pop__btn auth-pop__btn--primary">Log In</button>
-      <button type="button" class="auth-pop__btn">Sign Up</button>
-    </div>
+    <div class="auth-pop__panel"><button class="auth-pop__close" id="authClose" type="button" aria-label="Close"><i data-lucide="x"></i></button><h3>Welcome</h3><button type="button" class="auth-pop__btn auth-pop__btn--primary">Log In</button><button type="button" class="auth-pop__btn">Sign Up</button></div>
   </div>
-
   <div class="toast" id="toast"></div>
 
   <script src="js/data.js"></script>
   <script src="js/store.js"></script>
   <script src="js/components.js"></script>
-  <script src="js/feature-detail.js"></script>
+  <script src="js/contact.js"></script>
 </body>
 </html>

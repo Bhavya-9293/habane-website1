@@ -14,12 +14,20 @@
     <button class="nav__burger" id="burger" type="button" aria-label="Menu"><span></span><span></span><span></span></button>
     <nav class="nav__links nav__links--left">
       <a href="index.html">Home</a>
+      <a href="shop.html" class="nav__shop">Shop All</a>
       <a href="smart-series.html">Smart Series</a>
-      <a href="index.html#showroom">3D Showroom</a>
-      <a href="index.html#contact">Contact</a>
+      <a href="contact.html">Contact</a>
+      <a href="showroom.html" class="nav__cta">3D Showroom</a>
     </nav>
     <a class="nav__logo" href="index.html"><img src="assets/brand/logo-white.png" alt="Habäne" /></a>
     <nav class="nav__links nav__links--right">
+      <div class="loc-select" id="locSelect">
+        <button type="button" class="loc-select__btn" aria-label="Select region"></button>
+        <div class="loc-select__panel">
+          <input type="text" class="loc-select__search" placeholder="Search country…" autocomplete="off">
+          <div class="loc-select__list"></div>
+        </div>
+      </div>
       <button class="nav__icon nav__iconbtn" id="searchBtn" type="button" aria-label="Search"><i data-lucide="search"></i></button>
       <button class="nav__icon nav__iconbtn nav__wish" id="wishBtn" type="button" aria-label="Wishlist"><i data-lucide="heart"></i><em id="wishCount" hidden>0</em></button>
       <div class="nav__profile">
@@ -30,36 +38,25 @@
     </nav>
   </header>
 
-  <div class="ribbon" aria-hidden="true">
-    <div class="ribbon__track">
-      <span>FREE SHIPPING ON EVERYTHING · SMART DUFFELS — NOW LIVE · CARRY THE CITY · </span>
-      <span>FREE SHIPPING ON EVERYTHING · SMART DUFFELS — NOW LIVE · CARRY THE CITY · </span>
-    </div>
-  </div>
+  <div class="ribbon" aria-hidden="true"><div class="ribbon__track"></div></div>
 
   <div class="drawer" id="drawer">
-    <a href="index.html">Home</a><a href="smart-series.html">Smart Series</a>
-    <a href="index.html#showroom">3D Showroom</a><a href="index.html#contact">Contact</a>
+    <a href="index.html">Home</a>
     <a href="shop.html">Shop All</a>
+    <a href="smart-series.html">Smart Series</a>
+    <a href="showroom.html">3D Showroom</a>
+    <a href="contact.html">Contact</a>
     <a href="#" class="drawer__cart" id="drawerCartLink">Cart (<span class="drawer-cart-count">0</span>)</a>
   </div>
 
   <main class="shop-page">
-    <section class="trust trust--shop" aria-label="Why shop with us">
-      <div class="trust__item"><span class="trust__icon"><i data-lucide="truck"></i></span><div><strong>Free shipping</strong><em>over ₹4,999</em></div></div>
-      <div class="trust__item"><span class="trust__icon"><i data-lucide="banknote"></i></span><div><strong>COD available</strong><em>pay when it lands</em></div></div>
-      <div class="trust__item"><span class="trust__icon"><i data-lucide="rotate-ccw"></i></span><div><strong>7-day returns</strong><em>hassle-free</em></div></div>
-      <div class="trust__item"><span class="trust__icon"><i data-lucide="lock"></i></span><div><strong>Secure checkout</strong><em>100% safe</em></div></div>
-      <div class="trust__item"><span class="trust__icon"><i data-lucide="infinity"></i></span><div><strong>Lifetime zipper</strong><em>warranty</em></div></div>
-    </section>
-
     <div class="shop-container">
       <div class="shop-header">
         <div class="shop-header__inner">
           <h1 class="shop-header__title" id="shopTitle">ALL PRODUCTS</h1>
-          <p class="shop-header__desc" id="shopDesc">Built for everyday and everywhere travel. Habäne smart bags are engineered with premium materials, active charging systems, and modular organization.</p>
+          <p class="shop-header__desc" id="shopDesc">Built for everyday and everywhere travel. Habäne bags are engineered with premium materials, active charging systems, and modular organization.</p>
         </div>
-        
+
         <div class="shop-toolbar-new">
           <span class="shop-toolbar-new__count" id="shopCount">0 styles</span>
           <div class="shop-toolbar-new__actions">
@@ -76,38 +73,50 @@
                 <button data-sort="bestselling" class="sort-option">Best Selling</button>
               </div>
             </div>
-            
-            <button type="button" class="toolbar-action-btn" id="filterToggle">
+            <button type="button" class="toolbar-action-btn shop-filter-mobile" id="filterToggle">
               <span>Filters</span>
               <i data-lucide="sliders-horizontal"></i>
             </button>
           </div>
         </div>
-        
-        <!-- Collapsible filter panel -->
-        <div class="filter-panel" id="filterPanel">
-          <div class="filter-panel__inner">
-            <div class="filter-group">
-              <h4>Category</h4>
-              <div class="filter-group__pills" id="shopFilters">
-                <button class="pill is-active" data-filter="all" type="button">All</button>
-                <button class="pill" data-filter="duffel" type="button">Duffels</button>
-                <button class="pill" data-filter="backpack" type="button">Backpacks</button>
-                <button class="pill" data-filter="smart" type="button">Smart Series</button>
-                <button class="pill" data-filter="sling" type="button">Slings</button>
-              </div>
-            </div>
-            <div class="filter-group">
-              <h4>Price</h4>
-              <input type="range" id="priceRange" min="2000" max="15000" step="500" value="15000">
-              <p class="filter-group__price-label" id="priceLabel">Up to ₹15,000</p>
-            </div>
-          </div>
-        </div>
       </div>
 
-      <div class="shop-main-full">
-        <div class="grid" id="shopGrid"></div>
+      <div class="shop-layout">
+        <!-- American Tourister-style persistent filter sidebar -->
+        <aside class="shop-sidebar" id="filterPanel">
+          <div class="shop-sidebar__head">
+            <h3>Filters</h3>
+            <button type="button" class="shop-sidebar__close" id="filterClose" aria-label="Close filters"><i data-lucide="x"></i></button>
+          </div>
+
+          <div class="filter-group">
+            <h4>Category</h4>
+            <div class="filter-group__pills" id="shopFilters">
+              <button class="pill is-active" data-filter="all" type="button">All</button>
+              <button class="pill" data-filter="duffel" type="button">Duffels</button>
+              <button class="pill" data-filter="backpack" type="button">Backpacks</button>
+              <button class="pill" data-filter="smart" type="button">Smart Series</button>
+              <button class="pill" data-filter="sling" type="button">Slings</button>
+            </div>
+          </div>
+
+          <div class="filter-group">
+            <h4>Price</h4>
+            <input type="range" id="priceRange" min="2000" max="15000" step="500" value="15000">
+            <p class="filter-group__price-label" id="priceLabel">Up to ₹15,000</p>
+          </div>
+
+          <div class="filter-group">
+            <h4>Colour</h4>
+            <div class="filter-group__colors" id="colorFilters"></div>
+          </div>
+
+          <button type="button" class="filter-clear" id="filterClear">Clear all filters</button>
+        </aside>
+
+        <div class="shop-main">
+          <div class="grid" id="shopGrid"></div>
+        </div>
       </div>
     </div>
   </main>
@@ -145,7 +154,6 @@
     <div class="auth-pop__overlay" id="authCloseOverlay"></div>
     <div class="auth-pop__panel"><button class="auth-pop__close" id="authClose" type="button" aria-label="Close"><i data-lucide="x"></i></button><h3>Welcome</h3><button type="button" class="auth-pop__btn auth-pop__btn--primary">Log In</button><button type="button" class="auth-pop__btn">Sign Up</button></div>
   </div>
-  <div class="loc-select" id="locSelect"><button type="button" class="loc-select__btn" aria-label="Select region"></button><div class="loc-select__panel"><input type="text" class="loc-select__search" placeholder="Search country…"><div class="loc-select__list"></div></div></div>
   <div class="toast" id="toast"></div>
 
   <script src="js/data.js"></script>
