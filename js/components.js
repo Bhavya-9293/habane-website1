@@ -126,10 +126,16 @@
     if (el) { el.textContent = n; el.hidden = n === 0; }
   }
 
-  /* ---- Location selector ---- */
+  /* ---- Location selector (floating, bottom-left) ---- */
+  function flagImg(code, cls) {
+    return `<img class="${cls}" src="https://flagcdn.com/${code.toLowerCase()}.svg" alt="" width="24" height="18" loading="lazy">`;
+  }
+
   function initLocation() {
     const wrap = $('#locSelect');
     if (!wrap) return;
+    // float it on the page, not inside the nav
+    if (wrap.parentElement !== document.body) document.body.appendChild(wrap);
     const btn = wrap.querySelector('.loc-select__btn');
     const panel = wrap.querySelector('.loc-select__panel');
     const search = wrap.querySelector('.loc-select__search');
@@ -142,14 +148,14 @@
         c.name.toLowerCase().includes(q) || c.currency.toLowerCase().includes(q));
       list.innerHTML = items.map(c => `
         <button type="button" class="loc-select__item ${c.code === current.code ? 'is-active' : ''}" data-code="${c.code}">
-          <span class="loc-select__flag">${c.flag}</span>
+          ${flagImg(c.code, 'loc-select__flag-img')}
           <span class="loc-select__name">${c.name}</span>
           <span class="loc-select__cur">${c.currency}</span>
         </button>`).join('');
     }
 
     function updateBtn() {
-      btn.innerHTML = `<span class="loc-select__flag">${current.flag}</span><span>${current.currency}</span>${icon('chevron-down', 'loc-select__chev')}`;
+      btn.innerHTML = `${flagImg(current.code, 'loc-select__flag-img')}<span>${current.currency}</span>${icon('chevron-down', 'loc-select__chev')}`;
       refreshIcons(btn);
     }
 

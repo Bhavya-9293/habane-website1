@@ -142,37 +142,41 @@ em{font-style:normal}
   position:relative; padding:.2rem 0; color:#fff;
   transition:color .25s, opacity .25s;
 }
-.nav__links a:not(.nav__icon):not(.nav__cta):not(.nav__shop)::after{
+.nav__links a:not(.nav__icon):not(.nav__cta)::after{
   content:""; position:absolute; left:0; bottom:-3px; height:2px; width:0;
   background:var(--ice); transition:width .3s var(--ease);
 }
 .nav__links a:hover{ color:var(--ice) }
-.nav__links a:not(.nav__icon):not(.nav__cta):not(.nav__shop):hover::after{ width:100% }
+.nav__links a:not(.nav__icon):not(.nav__cta):hover::after{ width:100% }
 
-/* highlighted 3D Showroom CTA pill */
+/* highlighted 3D Showroom — glass pill with shine sweep */
 .nav__cta{
+  position:relative; overflow:hidden;
   display:inline-flex; align-items:center; gap:.4rem;
-  padding:.5rem 1.1rem; border-radius:999px;
-  color:var(--navy) !important; background:var(--ice);
-  font-weight:700; letter-spacing:.05em;
-  box-shadow:0 0 0 0 rgba(143,212,236,.6);
-  animation:navPulse 2.6s ease-in-out infinite;
-  transition:transform .25s var(--ease), box-shadow .3s var(--ease), background .3s;
+  padding:.55rem 1.2rem; border-radius:999px;
+  color:#fff !important; font-weight:700; letter-spacing:.05em;
+  background:linear-gradient(135deg, rgba(255,255,255,.22), rgba(255,255,255,.06));
+  border:1px solid rgba(255,255,255,.4);
+  -webkit-backdrop-filter:blur(8px); backdrop-filter:blur(8px);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.55), inset 0 -1px 2px rgba(0,0,0,.15), 0 6px 18px rgba(0,0,0,.18);
+  transition:transform .25s var(--ease), background .3s, border-color .3s;
 }
-.nav__cta:hover{ color:var(--navy) !important; background:#fff; transform:translateY(-1px) }
-@keyframes navPulse{
-  0%,100%{ box-shadow:0 0 0 0 rgba(143,212,236,.55) }
-  50%{ box-shadow:0 0 0 8px rgba(143,212,236,0) }
+.nav__cta::before{
+  content:""; position:absolute; top:0; left:-150%;
+  width:55%; height:100%;
+  background:linear-gradient(120deg, transparent 0%, rgba(255,255,255,.65) 50%, transparent 100%);
+  transform:skewX(-22deg); pointer-events:none;
+  animation:navShine 3.6s ease-in-out infinite;
 }
-/* Shop All button */
-.nav__shop{
-  display:inline-flex; align-items:center;
-  padding:.5rem 1.15rem; border-radius:999px;
-  border:1.5px solid rgba(255,255,255,.55);
-  color:#fff !important; font-weight:600; letter-spacing:.05em;
-  transition:background .3s var(--ease), color .3s, border-color .3s;
+.nav__cta:hover{
+  transform:translateY(-1px);
+  background:linear-gradient(135deg, rgba(255,255,255,.3), rgba(255,255,255,.12));
+  border-color:rgba(255,255,255,.7);
 }
-.nav__shop:hover{ background:#fff; color:var(--navy) !important; border-color:#fff }
+@keyframes navShine{
+  0%{ left:-150% } 55%{ left:160% } 100%{ left:160% }
+}
+.nav__shop{ display:inline-flex; align-items:center }
 
 .nav__iconbtn{ color:#fff }
 .nav__iconbtn:hover{ color:var(--ice) }
@@ -1135,26 +1139,30 @@ model-viewer#viewer{
 .nav__profile{ position:relative }
 
 /* ---- location selector ---- */
+/* floating region selector — bottom-left of the page */
 .loc-select{
-  position:relative; z-index:70; display:inline-flex; align-items:center;
+  position:fixed; left:20px; bottom:22px; z-index:70; display:inline-flex; align-items:center;
 }
 .loc-select__btn{
-  display:inline-flex; align-items:center; gap:.5rem;
-  padding:.5rem .9rem; border-radius:999px; border:1.5px solid rgba(255,255,255,.5);
-  background:rgba(255,255,255,.1); backdrop-filter:blur(8px);
-  cursor:pointer;
-  font-family:"Montserrat",sans-serif; font-weight:600; font-size:.9rem; color:#fff;
-  transition:background .3s var(--ease), border-color .3s;
+  display:inline-flex; align-items:center; gap:.55rem;
+  padding:.6rem 1rem; border-radius:999px; border:1px solid rgba(11,18,64,.12);
+  background:rgba(255,255,255,.95); backdrop-filter:blur(10px);
+  box-shadow:0 10px 28px rgba(11,18,64,.16); cursor:pointer;
+  font-family:"Montserrat",sans-serif; font-weight:600; font-size:.9rem; color:var(--navy);
+  transition:transform .25s var(--ease), box-shadow .3s var(--ease);
 }
-.loc-select__btn:hover{ background:rgba(255,255,255,.2); border-color:#fff }
-.loc-select__btn .loc-select__flag{ font-size:1.25rem; line-height:1 }
-.loc-select__chev{ width:15px; height:15px; opacity:.75 }
+.loc-select__btn:hover{ transform:translateY(-2px); box-shadow:0 14px 34px rgba(11,18,64,.22) }
+.loc-select__flag-img{
+  width:24px; height:18px; border-radius:3px; object-fit:cover; display:block;
+  box-shadow:0 0 0 1px rgba(11,18,64,.12);
+}
+.loc-select__chev{ width:15px; height:15px; opacity:.6 }
 .loc-select__panel{
-  position:absolute; top:calc(100% + .6rem); right:0; left:auto; width:min(300px,92vw);
+  position:absolute; bottom:calc(100% + .6rem); left:0; right:auto; width:min(300px,90vw);
   background:rgba(255,255,255,.98); backdrop-filter:blur(12px);
   border-radius:16px; border:1px solid rgba(11,18,64,.08);
   box-shadow:0 20px 50px rgba(11,18,64,.25); padding:.6rem;
-  opacity:0; visibility:hidden; transform:translateY(-8px); transition:.3s var(--ease);
+  opacity:0; visibility:hidden; transform:translateY(8px); transition:.3s var(--ease);
 }
 .loc-select.open .loc-select__panel{ opacity:1; visibility:visible; transform:none }
 .loc-select__search{
@@ -1725,8 +1733,7 @@ a.contact__card:hover{ transform:translateY(-4px); box-shadow:0 16px 32px rgba(1
   .nav{ padding-left:.9rem; padding-right:.9rem; gap:.5rem }
   .nav__logo img{ height:32px }
   .nav__links--right{ gap:.55rem }
-  .loc-select__btn{ padding:.4rem .55rem; font-size:0; gap:.3rem }
-  .loc-select__btn .loc-select__flag{ font-size:1.2rem }
-  .loc-select__chev{ display:none }
+  .loc-select{ left:12px; bottom:12px }
+  .loc-select__btn{ padding:.5rem .75rem; font-size:.82rem }
   .checkout-form__row{ grid-template-columns:1fr }
 }
