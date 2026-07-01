@@ -510,45 +510,48 @@
     });
   }
 
-  /* ---- Rayred-style footer (every page except the homepage) ---- */
+  /* ---- Rayred-style footer (all pages) ---- */
   function initFooter() {
     const foot = document.querySelector('.foot');
-    if (!foot || document.body.dataset.page === 'home') return;
+    if (!foot) return;
+    foot.classList.add('foot--rr');
     foot.innerHTML = `
-      <div class="foot__top">
-        <div class="foot__brand">
-          <img src="assets/brand/wordmark-silver.png" alt="Habäne" class="foot__word">
-          <p class="foot__tag">Carry the city. Leave the baggage.</p>
-          <div class="foot__social">
-            <a href="#" aria-label="Instagram">${icon('instagram')}</a>
-            <a href="#" aria-label="YouTube">${icon('youtube')}</a>
-            <a href="#" aria-label="Twitter">${icon('twitter')}</a>
+      <div class="foot-rr">
+        <div class="foot-rr__brand">
+          <img src="assets/brand/wordmark-silver.png" alt="Habäne" class="foot-rr__word">
+        </div>
+        <div class="foot-rr__right">
+          <div class="foot-rr__acc">
+            <details class="foot-acc"><summary>RETURN POLICY</summary><p>7-day easy returns. If it's not giving what you wanted, send it back for a refund or exchange.</p></details>
+            <details class="foot-acc"><summary>SHIPPING</summary><p>Free shipping over ₹4,999. Metro cities 2–4 days, rest of India 4–7. COD available nationwide.</p></details>
+            <details class="foot-acc"><summary>WARRANTY</summary><p>Lifetime zipper warranty, reinforced stitching and water-repellent canvas on every carry.</p></details>
+          </div>
+          <div class="foot-rr__cols">
+            <div class="foot-rr__col">
+              <h4>HELP</h4>
+              <a href="#">Track Your Order</a>
+              <a href="#">Returns &amp; Exchange</a>
+            </div>
+            <div class="foot-rr__col">
+              <h4>ABOUT US</h4>
+              <a href="about.html">Our Story</a>
+              <a href="contact.html">Contact Us</a>
+            </div>
+            <div class="foot-rr__col">
+              <h4>SHOP</h4>
+              <a href="shop.html">All Products</a>
+              <a href="smart-series.html">Smart Series</a>
+            </div>
           </div>
         </div>
-        <div class="foot__col">
-          <h4>Shop</h4>
-          <a href="shop.html">All Products</a>
-          <a href="shop.html?cat=duffel">Duffels</a>
-          <a href="shop.html?cat=backpack">Backpacks</a>
-          <a href="smart-series.html">Smart Series</a>
-        </div>
-        <div class="foot__col">
-          <h4>About Us</h4>
-          <a href="index.html#story">Our Story</a>
-          <a href="contact.html">Contact Us</a>
-          <a href="showroom.html">3D Showroom</a>
-        </div>
-        <div class="foot__col">
-          <h4>Help</h4>
-          <a href="#">Track Your Order</a>
-          <a href="#">Returns &amp; Exchange</a>
-          <a href="#">Shipping Info</a>
-        </div>
       </div>
-      <div class="foot__bottom">
-        <p>© <span id="yr"></span> Habäne. All rights reserved.</p>
-        <a href="index.html" class="foot__vibe">Back to home</a>
-      </div>`;
+      <div class="foot-rr__social">
+        <a href="#" aria-label="Facebook">${icon('facebook')}</a>
+        <a href="#" aria-label="Instagram">${icon('instagram')}</a>
+        <a href="#" aria-label="YouTube">${icon('youtube')}</a>
+        <a href="#" aria-label="Twitter">${icon('twitter')}</a>
+      </div>
+      <div class="foot-rr__copy">© <span id="yr"></span> Habäne</div>`;
     refreshIcons(foot);
   }
 
