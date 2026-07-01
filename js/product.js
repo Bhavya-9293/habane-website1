@@ -92,12 +92,41 @@
     document.getElementById('relNext')?.addEventListener('click', () => track.scrollBy({ left: step(), behavior: 'smooth' }));
   }
 
+  /* Amazon-style hover-to-zoom on the main product image (desktop only) */
+  function initZoom() {
+    const box = document.querySelector('.pd__main');
+    const img = document.getElementById('pdMainImg');
+    if (!box || !img) return;
+    if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+    box.classList.add('pd__main--zoom');
+    if (!box.querySelector('.pd__zoom-hint')) {
+      box.insertAdjacentHTML('beforeend',
+        `<span class="pd__zoom-hint">${H.icon('zoom-in')} Hover to zoom</span>`);
+      H.refreshIcons(box);
+    }
+    const ZOOM = 2.3;
+    box.addEventListener('mousemove', e => {
+      const r = box.getBoundingClientRect();
+      const x = ((e.clientX - r.left) / r.width) * 100;
+      const y = ((e.clientY - r.top) / r.height) * 100;
+      img.style.transformOrigin = `${x}% ${y}%`;
+      img.style.transform = `scale(${ZOOM})`;
+    });
+    box.addEventListener('mouseenter', () => box.classList.add('is-zooming'));
+    box.addEventListener('mouseleave', () => {
+      box.classList.remove('is-zooming');
+      img.style.transform = 'scale(1)';
+      img.style.transformOrigin = 'center';
+    });
+  }
+
   document.addEventListener('DOMContentLoaded', () => {
     H.initShared();
     const p = H.byId(id);
     render(p);
     if (!p) return;
     renderRelated(p);
+    initZoom();
 
     document.getElementById('pdThumbs')?.addEventListener('click', e => {
       const t = e.target.closest('.pd__thumb');

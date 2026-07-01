@@ -377,7 +377,7 @@ em{font-style:normal}
 .card.in{ opacity:1 }
 .card:hover{ transform:translateY(-4px); box-shadow:0 18px 40px rgba(11,18,64,.12) }
 .card__media{
-  position:relative; aspect-ratio:4/5; overflow:hidden;
+  position:relative; aspect-ratio:1/1; overflow:hidden;
   background:#f4f5f7;
 }
 /* ---- comet-style two-image crossfade ---- */
@@ -1566,7 +1566,9 @@ a.contact__card:hover{ transform:translateY(-4px); box-shadow:0 16px 32px rgba(1
   text-decoration:underline; text-underline-offset:3px; padding:0;
 }
 .shop-main{ min-width:0 }
-.shop-main .grid{ grid-template-columns:repeat(auto-fill,minmax(248px,1fr)) }
+.shop-main .grid{ grid-template-columns:repeat(4,1fr) }
+@media(max-width:1100px){ .shop-main .grid{ grid-template-columns:repeat(3,1fr) } }
+@media(max-width:860px){ .shop-main .grid{ grid-template-columns:repeat(2,1fr) } }
 .shop-empty{ grid-column:1/-1; text-align:center; padding:3rem; color:#6a6f82 }
 .shop-filter-mobile{ display:none }
 
@@ -1589,7 +1591,15 @@ a.contact__card:hover{ transform:translateY(-4px); box-shadow:0 16px 32px rgba(1
 .pd__crumb a:hover{ color:var(--navy) }
 .pd__grid{ display:grid; grid-template-columns:1.05fr 1fr; gap:clamp(1.5rem,4vw,3rem) }
 .pd__main{ position:relative; border-radius:20px; overflow:hidden; background:var(--silver-2) }
-.pd__main img{ width:100%; aspect-ratio:1/1; object-fit:cover }
+.pd__main img{ width:100%; aspect-ratio:1/1; object-fit:cover; transition:transform .18s ease-out; will-change:transform }
+.pd__main--zoom{ cursor:zoom-in }
+.pd__zoom-hint{
+  position:absolute; right:12px; bottom:12px; z-index:3; display:inline-flex; align-items:center; gap:.4rem;
+  background:rgba(11,18,64,.72); color:#fff; padding:.4rem .7rem; border-radius:999px;
+  font-size:.68rem; letter-spacing:.03em; pointer-events:none; backdrop-filter:blur(4px);
+}
+.pd__zoom-hint i{ width:14px; height:14px }
+.pd__main.is-zooming .pd__zoom-hint{ opacity:0 }
 .pd__badge{
   position:absolute; top:1rem; left:1rem; font-family:"Conthrax",sans-serif; font-size:.6rem;
   letter-spacing:.08em; background:var(--navy); color:#fff; padding:.35rem .6rem; border-radius:999px;
