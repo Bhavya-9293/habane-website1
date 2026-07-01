@@ -1061,18 +1061,16 @@ model-viewer#viewer{
 .hero-logo3d::part(default-progress-bar){ display:none }
 .hero-logo3d--img{ object-fit:contain; cursor:default; filter:drop-shadow(0 16px 30px rgba(11,18,64,.25)) }
 
-/* hero banner — just the centered rotating logo, no content */
+/* hero banner — generated backdrop image behind the centered rotating logo */
 .hero-banner{
   position:relative; width:100%; min-height:clamp(440px,74vh,760px);
   display:flex; align-items:center; justify-content:center; overflow:hidden;
-  background:
-    radial-gradient(1000px 520px at 50% 34%, #ffffff 0%, rgba(255,255,255,0) 62%),
-    linear-gradient(135deg,#e6e9ed 0%, #f6f7f9 38%, #dcdfe4 68%, #eef0f3 100%);
+  background:url("assets/brand/hero-bg.jpg") center/cover no-repeat;
 }
 .hero-banner__glow{
-  position:absolute; width:min(62vw,720px); aspect-ratio:1; border-radius:50%;
-  background:radial-gradient(circle, rgba(191,232,245,.42), rgba(191,232,245,0) 66%);
-  filter:blur(40px); pointer-events:none;
+  position:absolute; width:min(56vw,680px); aspect-ratio:1; border-radius:50%;
+  background:radial-gradient(circle, rgba(191,232,245,.28), rgba(191,232,245,0) 66%);
+  filter:blur(50px); pointer-events:none; top:34%; transform:translateY(-50%);
 }
 .hero-banner__logo{
   width:min(82vw,640px); height:clamp(380px,62vh,640px);
