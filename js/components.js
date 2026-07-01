@@ -172,10 +172,15 @@
       H.setLocation(current);
       updateBtn();
       wrap.classList.remove('open');
-      toast(`Region set to ${current.name}`);
+      toast(`Prices now in ${current.currency}`);
     });
     document.addEventListener('click', e => { if (!wrap.contains(e.target)) wrap.classList.remove('open'); });
-    H.events.addEventListener('location:update', e => { current = e.detail; updateBtn(); });
+    H.events.addEventListener('location:update', e => {
+      current = e.detail;
+      updateBtn();
+      H.refreshPrices();
+      syncCart();
+    });
     updateBtn();
     render();
   }
@@ -384,6 +389,14 @@
   H.bumpCart = bumpCart;
   H.runSearch = runSearch;
 
+  /* Re-format every price on the page to the selected currency */
+  H.refreshPrices = function (root) {
+    (root || document).querySelectorAll('[data-inr]').forEach(el => {
+      const v = Number(el.dataset.inr);
+      if (!isNaN(v)) el.textContent = inr(v);
+    });
+  };
+
   H.addToCartUI = function (id, color, size, qty) {
     const p = H.addToCart(id, color, size, qty);
     toast(`Added "${p.name}"`);
@@ -398,7 +411,7 @@
       badgeClass = 'card__badge--red';
     }
     const badge = p.badge ? `<span class="card__badge ${badgeClass}">${p.badge}</span>` : '';
-    const was = p.was ? `<span class="card__was">${inr(p.was)}</span>` : '';
+    const was = p.was ? `<span class="card__was" data-inr="${p.was}">${inr(p.was)}</span>` : '';
     const liked = H.isWish(p.id);
     const back = p.img2 ? `<img class="card__img card__img--back" src="${p.img2}" alt="" loading="lazy">` : '';
     return `
@@ -421,7 +434,7 @@
               <span class="card__cat">${p.catLabel}</span>
             </div>
             <div class="card__info-right">
-              <span class="card__price">${inr(p.price)}</span>
+              <span class="card__price" data-inr="${p.price}">${inr(p.price)}</span>
               ${was}
             </div>
           </div>

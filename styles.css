@@ -1159,6 +1159,7 @@ model-viewer#viewer{
   position:fixed; left:20px; bottom:22px; z-index:70; display:inline-flex; align-items:center;
 }
 .loc-select__btn{
+  position:relative; overflow:hidden;
   display:inline-flex; align-items:center; gap:.55rem;
   padding:.6rem 1rem; border-radius:999px; border:1px solid rgba(11,18,64,.12);
   background:rgba(255,255,255,.95); backdrop-filter:blur(10px);
@@ -1166,7 +1167,16 @@ model-viewer#viewer{
   font-family:"Montserrat",sans-serif; font-weight:600; font-size:.9rem; color:var(--navy);
   transition:transform .25s var(--ease), box-shadow .3s var(--ease);
 }
+/* rayred-style shine sweep */
+.loc-select__btn::before{
+  content:""; position:absolute; top:0; left:-140%; width:55%; height:100%;
+  background:linear-gradient(120deg, transparent 0%, rgba(11,18,64,.10) 45%, rgba(199,162,75,.35) 50%, rgba(11,18,64,.10) 55%, transparent 100%);
+  transform:skewX(-22deg); pointer-events:none;
+  animation:locShine 4s ease-in-out infinite;
+}
+@keyframes locShine{ 0%{ left:-140% } 45%{ left:150% } 100%{ left:150% } }
 .loc-select__btn:hover{ transform:translateY(-2px); box-shadow:0 14px 34px rgba(11,18,64,.22) }
+.loc-select__btn > *{ position:relative; z-index:1 }
 .loc-select__flag-img{
   width:24px; height:18px; border-radius:3px; object-fit:cover; display:block;
   box-shadow:0 0 0 1px rgba(11,18,64,.12);
@@ -1259,19 +1269,32 @@ model-viewer#viewer{
 
 /* ---- Floating 3D Showroom button (bottom-right, mirrors the flag) ---- */
 .showroom-fab{
-  position:fixed; right:20px; bottom:22px; z-index:70;
+  position:fixed; right:22px; bottom:clamp(84px,12vh,120px); z-index:70;
   display:inline-flex; align-items:center; gap:.5rem;
-  padding:.7rem 1.15rem; border-radius:999px;
+  padding:.8rem 1.25rem; border-radius:999px;
   background:linear-gradient(135deg,var(--navy),var(--navy-2)); color:#fff;
-  border:1px solid rgba(255,255,255,.16);
+  border:1px solid rgba(199,162,75,.5);
   box-shadow:0 10px 28px rgba(11,18,64,.32);
   font-family:"Conthrax",sans-serif; font-size:.72rem; letter-spacing:.06em;
   transition:transform .25s var(--ease), box-shadow .3s var(--ease), color .3s;
+  animation:fabBob 2.6s ease-in-out infinite;
 }
-.showroom-fab:hover{ transform:translateY(-2px); box-shadow:0 14px 34px rgba(11,18,64,.42); color:var(--ice) }
+/* attention: gentle bob + pulsing glow ring */
+.showroom-fab::after{
+  content:""; position:absolute; inset:-4px; border-radius:999px; pointer-events:none;
+  box-shadow:0 0 0 0 rgba(199,162,75,.55);
+  animation:fabPulseRing 2.2s ease-out infinite;
+}
+@keyframes fabBob{ 0%,100%{ transform:translateY(0) } 50%{ transform:translateY(-6px) } }
+@keyframes fabPulseRing{
+  0%{ box-shadow:0 0 0 0 rgba(199,162,75,.55) }
+  70%{ box-shadow:0 0 0 14px rgba(199,162,75,0) }
+  100%{ box-shadow:0 0 0 0 rgba(199,162,75,0) }
+}
+.showroom-fab:hover{ transform:translateY(-3px) scale(1.03); box-shadow:0 16px 38px rgba(11,18,64,.45); color:var(--ice); animation-play-state:paused }
 .showroom-fab i{ width:18px; height:18px }
 @media(max-width:520px){
-  .showroom-fab{ right:12px; bottom:12px; padding:.7rem }
+  .showroom-fab{ right:12px; bottom:clamp(90px,16vh,150px); padding:.75rem }
   .showroom-fab span{ display:none }
 }
 
@@ -1293,6 +1316,42 @@ model-viewer#viewer{
 }
 .cart-rec__add:hover{ background:var(--navy-2); transform:scale(1.08) }
 .cart-rec__add i{ width:16px; height:16px }
+
+/* ---- Home full-bleed banner ---- */
+.home-banner{
+  position:relative; width:100%; min-height:clamp(340px,44vw,540px);
+  display:flex; align-items:center; justify-content:center; overflow:hidden;
+  margin:clamp(2rem,5vw,3.5rem) 0;
+}
+.home-banner__bg{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center 42% }
+.home-banner__overlay{ position:absolute; inset:0;
+  background:linear-gradient(90deg, rgba(7,11,40,.82) 0%, rgba(7,11,40,.55) 48%, rgba(7,11,40,.4) 100%) }
+.home-banner__content{ position:relative; z-index:2; text-align:center; color:#fff; padding:2.5rem clamp(1rem,4vw,2.5rem); max-width:760px }
+.home-banner__eyebrow{ font-family:"Conthrax",sans-serif; font-size:.72rem; letter-spacing:.2em; color:var(--ice); margin-bottom:1rem }
+.home-banner__title{ font-family:"Conthrax",sans-serif; font-size:clamp(2.2rem,7vw,4.5rem); line-height:1; margin-bottom:1.1rem }
+.home-banner__sub{ font-size:1rem; color:rgba(255,255,255,.85); max-width:46ch; margin:0 auto 1.9rem; line-height:1.6 }
+
+/* ---- Home split feature (Explore) ---- */
+.split-feature{ position:relative; display:grid; grid-template-columns:1fr 1fr; gap:0; margin:clamp(2rem,5vw,3.5rem) 0 }
+.split-feature__panel{ position:relative; overflow:hidden; aspect-ratio:16/10 }
+.split-feature__panel img{ width:100%; height:100%; object-fit:cover; transition:transform .6s var(--ease); filter:brightness(.9) }
+.split-feature__panel:hover img{ transform:scale(1.05) }
+.split-feature__center{
+  position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center;
+  gap:1rem; z-index:3; text-align:center; text-decoration:none;
+}
+.split-feature__tag{
+  font-family:"Montserrat",sans-serif; font-size:.8rem; letter-spacing:.04em; font-weight:600;
+  color:var(--navy); background:rgba(255,255,255,.94); padding:.45rem 1.1rem; border-radius:4px;
+  transition:transform .25s var(--ease);
+}
+.split-feature__center:hover .split-feature__tag{ transform:translateY(-2px) }
+.split-feature__title{ font-family:"Conthrax",sans-serif; font-size:clamp(1.8rem,5vw,3.4rem); color:#fff;
+  text-shadow:0 2px 24px rgba(0,0,0,.55); letter-spacing:.02em }
+@media(max-width:560px){
+  .split-feature__panel{ aspect-ratio:3/4 }
+  .split-feature__title{ font-size:clamp(1.3rem,6vw,2rem) }
+}
 
 /* ---- About Us page ---- */
 .about-page{ overflow:hidden }
@@ -1530,7 +1589,7 @@ a.contact__card:hover{ transform:translateY(-4px); box-shadow:0 16px 32px rgba(1
 }
 .shop-sidebar{
   position:sticky; top:100px; display:flex; flex-direction:column; gap:1.8rem;
-  padding-right:.4rem;
+  padding:0 .8rem 0 clamp(1.2rem,3vw,2rem);
 }
 .shop-sidebar__head{ display:none; justify-content:space-between; align-items:center }
 .shop-sidebar__head h3{ font-family:"Conthrax",sans-serif; font-size:1rem; color:var(--navy) }

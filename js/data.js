@@ -27,19 +27,20 @@ const FAQ_ITEMS = [
   { q: 'Do you offer Cash on Delivery?', a: 'COD available nationwide. Pay when your order arrives at your door.', img: 'assets/products/p5-steel-blue-weekender.jpg', tag: 'PAYMENTS' },
 ];
 
+// rate = target currency per 1 INR (approx, for on-site price conversion)
 const COUNTRIES = [
-  { code: 'IN', name: 'India', currency: 'INR', flag: '🇮🇳' },
-  { code: 'US', name: 'United States', currency: 'USD', flag: '🇺🇸' },
-  { code: 'GB', name: 'United Kingdom', currency: 'GBP', flag: '🇬🇧' },
-  { code: 'AE', name: 'United Arab Emirates', currency: 'AED', flag: '🇦🇪' },
-  { code: 'SG', name: 'Singapore', currency: 'SGD', flag: '🇸🇬' },
-  { code: 'AU', name: 'Australia', currency: 'AUD', flag: '🇦🇺' },
-  { code: 'CA', name: 'Canada', currency: 'CAD', flag: '🇨🇦' },
-  { code: 'DE', name: 'Germany', currency: 'EUR', flag: '🇩🇪' },
-  { code: 'FR', name: 'France', currency: 'EUR', flag: '🇫🇷' },
-  { code: 'JP', name: 'Japan', currency: 'JPY', flag: '🇯🇵' },
-  { code: 'KR', name: 'South Korea', currency: 'KRW', flag: '🇰🇷' },
-  { code: 'NZ', name: 'New Zealand', currency: 'NZD', flag: '🇳🇿' },
+  { code: 'IN', name: 'India', currency: 'INR', flag: '🇮🇳', symbol: '₹', rate: 1, locale: 'en-IN' },
+  { code: 'US', name: 'United States', currency: 'USD', flag: '🇺🇸', symbol: '$', rate: 0.012, locale: 'en-US' },
+  { code: 'GB', name: 'United Kingdom', currency: 'GBP', flag: '🇬🇧', symbol: '£', rate: 0.0095, locale: 'en-GB' },
+  { code: 'AE', name: 'United Arab Emirates', currency: 'AED', flag: '🇦🇪', symbol: 'د.إ ', rate: 0.044, locale: 'en-US' },
+  { code: 'SG', name: 'Singapore', currency: 'SGD', flag: '🇸🇬', symbol: 'S$', rate: 0.016, locale: 'en-US' },
+  { code: 'AU', name: 'Australia', currency: 'AUD', flag: '🇦🇺', symbol: 'A$', rate: 0.018, locale: 'en-US' },
+  { code: 'CA', name: 'Canada', currency: 'CAD', flag: '🇨🇦', symbol: 'C$', rate: 0.016, locale: 'en-US' },
+  { code: 'DE', name: 'Germany', currency: 'EUR', flag: '🇩🇪', symbol: '€', rate: 0.011, locale: 'de-DE' },
+  { code: 'FR', name: 'France', currency: 'EUR', flag: '🇫🇷', symbol: '€', rate: 0.011, locale: 'fr-FR' },
+  { code: 'JP', name: 'Japan', currency: 'JPY', flag: '🇯🇵', symbol: '¥', rate: 1.8, locale: 'ja-JP' },
+  { code: 'KR', name: 'South Korea', currency: 'KRW', flag: '🇰🇷', symbol: '₩', rate: 16, locale: 'ko-KR' },
+  { code: 'NZ', name: 'New Zealand', currency: 'NZD', flag: '🇳🇿', symbol: 'NZ$', rate: 0.02, locale: 'en-NZ' },
 ];
 
 const PRODUCTS = [
@@ -186,6 +187,12 @@ const PRODUCTS = [
 
 Object.assign(window.HABANE, { FREE_SHIP, PRODUCTS, SMART_FEATURES, FAQ_ITEMS, COUNTRIES,
   byId: id => PRODUCTS.find(p => p.id === id),
-  inr: n => '₹' + n.toLocaleString('en-IN'),
+  // currency-aware price formatter (converts INR → selected region)
+  inr: n => {
+    const H = window.HABANE;
+    const c = (H.getLocation && H.getLocation()) || { symbol: '₹', rate: 1, locale: 'en-IN' };
+    const v = Math.round(n * (c.rate || 1));
+    return (c.symbol || '₹') + v.toLocaleString(c.locale || 'en-US');
+  },
   stars: n => '★'.repeat(n) + '☆'.repeat(5 - n),
 });

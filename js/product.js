@@ -31,7 +31,7 @@
     if (crumb) crumb.textContent = p.name;
     document.getElementById('pdStars').innerHTML = H.stars(p.stars);
     document.getElementById('pdDesc').textContent = p.desc;
-    document.getElementById('pdPrice').innerHTML = `${H.inr(p.price)}${p.was ? ` <s>${H.inr(p.was)}</s>` : ''}`;
+    document.getElementById('pdPrice').innerHTML = `<span data-inr="${p.price}">${H.inr(p.price)}</span>${p.was ? ` <s data-inr="${p.was}">${H.inr(p.was)}</s>` : ''}`;
 
     const badge = document.getElementById('pdBadge');
     if (badge) {
