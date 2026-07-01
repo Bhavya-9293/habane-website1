@@ -364,18 +364,18 @@ em{font-style:normal}
 .grid{
   max-width:var(--maxw); margin:0 auto;
   display:grid; grid-template-columns:repeat(3,1fr);
-  gap:1.6rem; background:transparent; border:0;
+  gap:0; background:transparent; border:0;
 }
 .card{
   background:#ffffff;
   border:1px solid #e9ebef;
-  border-radius:14px; overflow:hidden;
+  border-radius:0; overflow:hidden;
   display:flex; flex-direction:column;
   position:relative;
-  transition:opacity .6s var(--ease), transform .4s var(--ease), box-shadow .4s var(--ease);
+  transition:opacity .6s var(--ease);
 }
 .card.in{ opacity:1 }
-.card:hover{ transform:translateY(-4px); box-shadow:0 18px 40px rgba(11,18,64,.12) }
+.card:hover{ z-index:2 }
 .card__media{
   position:relative; aspect-ratio:1/1; overflow:hidden;
   background:#f4f5f7;
@@ -1241,7 +1241,7 @@ model-viewer#viewer{
 .carousel-btn--prev{ left:14px }
 .carousel-btn--next{ right:14px }
 .featured__track{
-  display:flex; gap:20px; overflow-x:auto; overflow-y:hidden;
+  display:flex; gap:0; overflow-x:auto; overflow-y:hidden;
   scroll-snap-type:x mandatory; padding:.4rem 0 1.5rem; scroll-padding-left:0;
   scrollbar-width:none; -ms-overflow-style:none;
 }
