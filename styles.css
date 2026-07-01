@@ -1099,20 +1099,20 @@ model-viewer#viewer{
 .hero-logo3d::part(default-progress-bar){ display:none }
 .hero-logo3d--img{ object-fit:contain; cursor:default; filter:drop-shadow(0 16px 30px rgba(11,18,64,.25)) }
 
-/* hero banner — engineering image behind the centered rotating logo */
+/* hero banner — full engineering image (no crop) with the logo overlaid */
 .hero-banner{
-  position:relative; width:100%; min-height:clamp(460px,78vh,800px);
-  display:flex; align-items:center; justify-content:center; overflow:hidden;
-  background:#070c22 url("assets/brand/engineered-banner.jpg") center/cover no-repeat;
+  position:relative; width:100%; overflow:hidden; background:#070c22;
 }
+.hero-banner__img{ display:block; width:100%; height:auto }
 /* soft spotlight so the navy logo reads against the dark image */
 .hero-banner__glow{
-  position:absolute; width:min(60vw,640px); aspect-ratio:1; border-radius:50%;
+  position:absolute; width:min(48vw,560px); aspect-ratio:1; border-radius:50%;
   background:radial-gradient(circle, rgba(150,205,240,.5) 0%, rgba(120,180,225,.22) 38%, rgba(120,180,225,0) 66%);
-  filter:blur(50px); pointer-events:none; top:50%; left:50%; transform:translate(-50%,-50%);
+  filter:blur(50px); pointer-events:none; top:50%; left:50%; transform:translate(-50%,-50%); z-index:1;
 }
 .hero-banner__logo{
-  width:min(82vw,640px); height:clamp(380px,62vh,640px);
+  position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);
+  width:min(52vw,540px); height:min(46vw,520px);
   background:transparent; --poster-color:transparent; outline:none; z-index:2; cursor:grab;
 }
 .hero-banner__logo:active{ cursor:grabbing }
