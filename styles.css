@@ -1099,16 +1099,17 @@ model-viewer#viewer{
 .hero-logo3d::part(default-progress-bar){ display:none }
 .hero-logo3d--img{ object-fit:contain; cursor:default; filter:drop-shadow(0 16px 30px rgba(11,18,64,.25)) }
 
-/* hero banner — generated backdrop image behind the centered rotating logo */
+/* hero banner — engineering image behind the centered rotating logo */
 .hero-banner{
-  position:relative; width:100%; min-height:clamp(440px,74vh,760px);
+  position:relative; width:100%; min-height:clamp(460px,78vh,800px);
   display:flex; align-items:center; justify-content:center; overflow:hidden;
-  background:url("assets/brand/hero-bg.jpg") center/cover no-repeat;
+  background:#070c22 url("assets/brand/engineered-banner.jpg") center/cover no-repeat;
 }
+/* soft spotlight so the navy logo reads against the dark image */
 .hero-banner__glow{
-  position:absolute; width:min(56vw,680px); aspect-ratio:1; border-radius:50%;
-  background:radial-gradient(circle, rgba(191,232,245,.28), rgba(191,232,245,0) 66%);
-  filter:blur(50px); pointer-events:none; top:34%; transform:translateY(-50%);
+  position:absolute; width:min(60vw,640px); aspect-ratio:1; border-radius:50%;
+  background:radial-gradient(circle, rgba(150,205,240,.5) 0%, rgba(120,180,225,.22) 38%, rgba(120,180,225,0) 66%);
+  filter:blur(50px); pointer-events:none; top:50%; left:50%; transform:translate(-50%,-50%);
 }
 .hero-banner__logo{
   width:min(82vw,640px); height:clamp(380px,62vh,640px);
