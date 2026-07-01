@@ -113,7 +113,7 @@
       const img = document.createElement('img');
       img.src = 'assets/brand/logo-emblem-navy.png';
       img.alt = 'Habäne';
-      img.className = 'hero-logo3d hero-logo3d--img';
+      img.className = 'hero-banner__logo hero-logo3d--img';
       mv.replaceWith(img);
     }
     if (!webglOK()) { fallback(); return; }
