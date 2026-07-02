@@ -74,30 +74,67 @@
       burger.classList.toggle('open');
       drawer.classList.toggle('open');
     });
+    // account entry for small screens where the profile icon is hidden
+    if (!drawer.querySelector('[data-drawer-account]')) {
+      const a = document.createElement('a');
+      a.href = 'account.html';
+      a.setAttribute('data-drawer-account', '');
+      a.textContent = H.getUser?.() ? 'My Account' : 'Log In / Sign Up';
+      const cartLink = drawer.querySelector('#drawerCartLink');
+      cartLink ? drawer.insertBefore(a, cartLink) : drawer.appendChild(a);
+    }
     drawer.querySelectorAll('a').forEach(a => a.addEventListener('click', close));
     H.closeDrawer = close;
   }
+
+  /* ---- HTML escaping for user-provided strings ---- */
+  function esc(s) {
+    return String(s).replace(/[&<>"']/g, c =>
+      ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+  }
+  H.esc = esc;
 
   /* ---- Profile dropdown ---- */
   function initProfile() {
     const btn = $('#profileBtn');
     const menu = $('#profileMenu');
     if (!btn || !menu) return;
+
+    function renderMenu() {
+      const user = H.getUser?.();
+      menu.innerHTML = user
+        ? `<span class="nav__profile-hi">Hi, ${esc(user.name.trim().split(/\s+/)[0])}</span>
+           <button type="button" data-account>My Account</button>
+           <button type="button" data-logout>Log Out</button>`
+        : `<button type="button" data-auth="login">Log In</button>
+           <button type="button" data-auth="signup">Sign Up</button>`;
+    }
+    renderMenu();
+    H.events.addEventListener('user:update', renderMenu);
+
     btn.addEventListener('click', e => {
       e.stopPropagation();
       menu.classList.toggle('open');
       btn.setAttribute('aria-expanded', menu.classList.contains('open'));
     });
     document.addEventListener('click', () => menu.classList.remove('open'));
-    menu.querySelectorAll('[data-auth]').forEach(el => {
-      el.addEventListener('click', e => {
-        e.preventDefault();
-        openModal($('#authPop'));
+    menu.addEventListener('click', e => {
+      const auth = e.target.closest('[data-auth]');
+      if (auth) { window.location.href = auth.dataset.auth === 'signup' ? 'account.html?mode=signup' : 'account.html'; return; }
+      if (e.target.closest('[data-account]')) { window.location.href = 'account.html'; return; }
+      if (e.target.closest('[data-logout]')) {
+        H.logout();
         menu.classList.remove('open');
-      });
+        toast('Logged out — see you soon');
+      }
     });
+
+    // legacy auth pop-up (still present on older pages) → route to the account page
     $('#authClose')?.addEventListener('click', () => closeModal($('#authPop')));
     $('#authCloseOverlay')?.addEventListener('click', () => closeModal($('#authPop')));
+    $$('.auth-pop__btn').forEach(b => b.addEventListener('click', () => {
+      window.location.href = /sign\s*up/i.test(b.textContent) ? 'account.html?mode=signup' : 'account.html';
+    }));
   }
 
   /* ---- Wishlist button ---- */

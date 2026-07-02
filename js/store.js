@@ -8,6 +8,7 @@
   let wish = load('habane_wish', []);
   let promo = load('habane_promo', null);
   let location = load('habane_location', H.COUNTRIES[0]);
+  let user = load('habane_user', null); // demo session: { name, email, since } — never a password
 
   function load(k, fb) {
     try { return JSON.parse(localStorage.getItem(k)) ?? fb; } catch { return fb; }
@@ -80,6 +81,20 @@
 
   function getLocation() { return location; }
 
+  function getUser() { return user; }
+
+  function setUser(u) {
+    user = u;
+    localStorage.setItem('habane_user', JSON.stringify(u));
+    H.events?.dispatchEvent(new CustomEvent('user:update', { detail: u }));
+  }
+
+  function logout() {
+    user = null;
+    localStorage.removeItem('habane_user');
+    H.events?.dispatchEvent(new CustomEvent('user:update', { detail: null }));
+  }
+
   Object.assign(H, {
     cart, wish, promo,
     get cartData() { return cart; },
@@ -89,5 +104,6 @@
     discountValue, cartQty, cartSubtotal,
     addToCart, changeQty, removeItem, clearCart,
     toggleWish, isWish, setLocation, getLocation, save,
+    getUser, setUser, logout,
   });
 })();
